@@ -6,6 +6,12 @@ const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
     entry: './src/index.ts',
+    // change port to 8081 avoid clashing with local port. But this would be merge to prod.config
+    // TODO: we can remove this and will default to 8080, if there is issue on production.
+    devServer: {
+        host: '0.0.0.0',
+        port: 8081
+    },
     output: {
         path: path.resolve(__dirname, './../dist'),
         filename: '[name].[contenthash].js'
