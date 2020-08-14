@@ -20,8 +20,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(join(__dirname, 'public')))
 
-Magic.use(app, { invokerPath: __dirname })
-
+Magic.use(app, { invokerPath: __dirname, logMapping: true })
 
 // catch 404 and forward to error handler
 app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {

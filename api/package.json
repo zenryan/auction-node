@@ -20,7 +20,8 @@
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "you-are-not": "^0.7.5"
   },
   "devDependencies": {
     "cpy-cli": "^3.1.1",
