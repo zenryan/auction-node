@@ -5,11 +5,36 @@ import { join } from 'path'
 // @ts-ignore
 import cookieParser = require('cookie-parser')
 // @ts-ignore
-import logger = require ('morgan')
+import logger = require('morgan')
 // @ts-ignore
 import Magic = require('express-routemagic')
+import "reflect-metadata";
+import { createConnection } from "typeorm";
 
-const app: express.Application = express()
+const app: express.Application = express();
+
+// TOOD: Use config and exit app when not connected to db 
+createConnection({
+    type: "mysql",
+    host: "localhost",
+    port: 33061,
+    username: "root",
+    password: "root",
+    database: "koi",
+    "entities": [
+        "src/entity/**/*.ts"
+     ],
+     "migrations": [
+        "src/migration/**/*.ts"
+     ],
+     "subscribers": [
+        "src/subscriber/**/*.ts"
+     ],
+    synchronize: false,
+    logging: false
+}).then(connection => {
+    console.log('Connected to DB');
+}).catch(error => console.log(error));
 
 // view engine setup
 app.set('views', join(__dirname, 'views'))
