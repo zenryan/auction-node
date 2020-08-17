@@ -20,48 +20,44 @@
     <ul class="mt-2 text-gray-700 dark:text-gray-400 capitalize">
       <!-- Links -->
 
-      <li class="mt-3 p-2 text-blue-600 dark:text-blue-300 rounded-lg">
-        <a href="/dashboard/" class=" flex flex-col items-center">
+      <li class="mt-3 p-2 hover:text-blue-600 dark:text-blue-300 rounded-lg">
+        <!-- <a href="/app/" class=" flex flex-col items-center"> -->
+        <router-link to="/app" class="flex flex-col items-center">
           <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
             <path
               d="M19 5v2h-4V5h4M9 5v6H5V5h4m10 8v6h-4v-6h4M9
-
-17v2H5v-2h4M21 3h-8v6h8V3M11 3H3v10h8V3m10
-
-8h-8v10h8V11m-10 4H3v6h8v-6z"
+                17v2H5v-2h4M21 3h-8v6h8V3M11 3H3v10h8V3m10
+                8h-8v10h8V11m-10 4H3v6h8v-6z"
             ></path>
           </svg>
           <span class="text-xs mt-2">dashboard</span>
-        </a>
+        </router-link>
+        <!-- </a> -->
       </li>
-      <!--
+
       <li
         class="mt-3 p-2 hover:text-blue-600 dark-hover:text-blue-300
-
-rounded-lg"
+          rounded-lg"
       >
-        <a href="/auction/" class=" flex flex-col items-center">
+        <router-link to="/app/auction" class="flex flex-col items-center">
           <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
             <path
               d="M23 3v-.5a2.5 2.5 0 00-5 0V3c-.55 0-1 .45-1 1v4c0
-
-.55.45 1 1 1h5c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1m-1
-
-0h-3v-.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V3M6
-
-11h9v2H6v-2m0-4h9v2H6V7m16 4v5c0 1.11-.89 2-2 2H6l-4
-
-4V4a2 2 0 012-2h11v2H4v13.17L5.17 16H20v-5h2z"
+                .55.45 1 1 1h5c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1m-1
+                0h-3v-.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V3M6
+                11h9v2H6v-2m0-4h9v2H6V7m16 4v5c0 1.11-.89 2-2 2H6l-4
+                4V4a2 2 0 012-2h11v2H4v13.17L5.17 16H20v-5h2z"
             ></path>
           </svg>
           <span class="text-xs mt-2">Auction</span>
-        </a>
+        </router-link>
       </li>
 
       <li
         class="mt-3 p-2 hover:text-blue-600 dark-hover:text-blue-300 rounded-lg"
       >
-        <a href="/item/" class=" flex flex-col items-center">
+        <!-- <a href="/app/item/" class=" flex flex-col items-center"> -->
+        <router-link to="/app/item" class="flex flex-col items-center">
           <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
             <path
               d="M21 18v1a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0
@@ -71,9 +67,10 @@ rounded-lg"
             ></path>
           </svg>
           <span class="text-xs mt-2">items</span>
-        </a>
+        <!-- </a> -->
+        </router-link>
       </li>
-
+  <!--
 <li
 
 class="mt-3 p-2 hover:text-blue-600 dark-hover:text-blue-300
@@ -165,20 +162,14 @@ d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0
     </ul>
 
     <div
-      class="mt-auto flex items-center p-2 text-blue-700 bg-purple-200
+      class="mt-auto flex items-center p-2 text-blue-700
             dark:text-blue-500 rounded-full"
     >
       <!-- important action -->
 
-      <a href="/">
-        <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
-          <path
-            d="M12 1c-5 0-9 4-9 9v7a3 3 0 003 3h3v-8H5v-2a7 7 0 017-7
-                7 7 0 017 7v2h-4v8h4v1h-7v2h6a3 3 0
-                003-3V10c0-5-4.03-9-9-9z"
-          ></path>
-        </svg>
-      </a>
+      <router-link to="/">
+        <img class="h-8 w-8" src="../assets/logout.svg" alt="Logo" />
+      </router-link>
     </div>
   </nav>
 </template>

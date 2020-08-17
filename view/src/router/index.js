@@ -16,12 +16,46 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
   {
     path: '/app',
     name: 'Dashboard',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Dashboard.vue'),
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Dashboard.vue'),
+    children: [
+      {
+        path: '',
+        name: 'DashboardMain',
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '../components/DashboardMain.vue'),
+      },
+      {
+        path: 'item',
+        name: 'Item',
+        component: () =>
+          import(/* webpackChunkName: "item" */ '../components/Item.vue'),
+      },
+      {
+        path: 'item/create',
+        name: 'EditItem',
+        component: () =>
+          import(/* webpackChunkName: "item" */ '../components/EditItem.vue'),
+      },
+      {
+        path: 'auction',
+        name: 'Auction',
+        component: () =>
+          import(/* webpackChunkName: "auction" */ '../components/Auction.vue'),
+      },
+      {
+        path: 'auction/create',
+        name: 'EditAuction',
+        component: () =>
+          import(/* webpackChunkName: "auction" */ '../components/EditAuction.vue'),
+      },
+    ],
   },
 ];
 

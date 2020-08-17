@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "autoprefixer": "^9.8.6",
+    "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "global": "^4.4.0",
     "serve": "^11.3.2",
@@ -42,7 +43,11 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "func-names": "off",
+      "no-param-reassign": "off",
+      "implicit-arrow-linebreak": "off"
+    }
   },
   "browserslist": [
     "> 1%",
