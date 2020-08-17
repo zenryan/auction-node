@@ -1,32 +1,24 @@
-# Bleeding edge Vue + Webpack + TypeScript Boiler Plate.
+# view2
 
-Read more about this boiler plate in a tutorial here (coming soon).
-
-Otherwise, if you are already experienced in Vue, use this boilerplate as follows:
-
-## Installation
-
-Clone this repository:
-
+## Project setup
 ```
-git clone https://github.com/calvintwr/vue-webpack-typescript-boilerplate.git
-
-npm install
+yarn install
 ```
 
-## Development
-
-Run the webpack development server:
+### Compiles and hot-reloads for development
 ```
-npm run dev
+yarn serve
 ```
 
-## Build
+### Compiles and minifies for production
 ```
-npm run build
+yarn build
 ```
 
-## Credits
-Forked from [ahmedash95's js-webpack-2020](https://github.com/ahmedash95/js-webpack-2020)
+### Lints and fixes files
+```
+yarn lint
+```
 
-[READ ahmedash95's tutorial](https://dev.to/ahmedash95/webpack-vue-tailwind-typescript-for-2020-l9d)
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
