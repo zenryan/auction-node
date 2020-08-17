@@ -166,6 +166,7 @@ export default {
       try {
         await this.$http.post('/item/create', {
           item: this.form,
+          mode: 'cors',
         });
         this.$router.push('/app/item');
       } catch (e) {

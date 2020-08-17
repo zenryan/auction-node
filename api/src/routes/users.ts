@@ -38,4 +38,4 @@ router.put('/add', async function (
   res.send({user});
 })
 
-module.exports = router
+module.exports = router;

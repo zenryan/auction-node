@@ -211,7 +211,7 @@ export default {
         await this.$http.post('/auction/create', {
           auction: this.form,
         });
-        this.$router.push('/auction');
+        this.$router.push('/app/auction');
       } catch (e) {
         console.error(`Error ${JSON.stringify(e.response.data)}`);
         this.error = e.response.data.error;

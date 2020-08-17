@@ -302,7 +302,9 @@ export default {
 
   async mounted() {
     try {
-      this.auctions = await this.$http.get('/auction');
+      const { data } = await this.$http.get('/auction');
+      this.auctions = data.auctions;
+      this.pagination = data.pagination;
     } catch (e) {
       console.error(`Error ${JSON.stringify(e.response.data)}`);
       this.error = e.response.data.error;

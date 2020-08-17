@@ -295,7 +295,9 @@ export default {
 
   async mounted() {
     try {
-      this.items = await this.$http.get('/item');
+      const { data } = await this.$http.get('/item');
+      this.items = data.items;
+      this.pagination = data.pagination;
     } catch (e) {
       console.error(`Error ${JSON.stringify(e.response.data)}`);
       this.error = e.response.data.error;

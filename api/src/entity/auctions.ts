@@ -1,7 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn, Generated, CreateDateColumn, UpdateDateColumn, Index } from "typeorm";
+import { Entity,
+    Column,
+    BaseEntity,
+    PrimaryGeneratedColumn,
+    Generated,
+    Index,
+    CreateDateColumn,
+    UpdateDateColumn
+} from "typeorm";
+
 
 @Entity()
-export class Auction {
+export class Auction extends BaseEntity{
     @PrimaryGeneratedColumn()
     @Index()
     id: number;
