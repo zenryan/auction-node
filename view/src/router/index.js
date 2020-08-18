@@ -20,10 +20,24 @@ const routes = [
       import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
   {
+    path: '/app2',
+    name: 'Dashboard2',
+    component: () =>
+      import(/* webpackChunkName: "dashboard" */ '../views/Dashboard2.vue'),
+    children: [
+      {
+        path: '',
+        name: 'DashboardMain2',
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ '../components/DashboardMain2.vue'),
+      },
+    ],
+  },
+  {
     path: '/app',
     name: 'Dashboard',
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/Dashboard.vue'),
+      import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue'),
     children: [
       {
         path: '',
