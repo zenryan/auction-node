@@ -1,28 +1,51 @@
 <template>
-  <div class="h-screen w-full flex overflow-hidden">
-    <Navigation />
+  <div>
+    <div
+      class="flex h-screen bg-gray-50 dark:bg-gray-900"
+      :class="{ 'overflow-hidden': isSideMenuOpen }"
+    >
+      <SideBar
+        v-on:closeSideMenu="onCloseSideMenu"
+        :isSideMenuOpen="isSideMenuOpen"
+      />
 
-    <main class="pt-2 pb-2 px-10 flex-1 bg-orange-200 dark:bg-black rounded-l-lg
-        transition duration-500 ease-in-out overflow-y-auto">
-      <router-view></router-view>
-    </main>
+      <div class="flex flex-col flex-1 w-full">
+        <TopMenu v-on:toggleSideMenu="onToggleSideMenu" />
+        <main class="h-full overflow-y-auto p-5">
+          <router-view></router-view>
+        </main>
+      </div>
 
-    <PanelRight />
+      <Main />
+
+    </div>
   </div>
 </template>
 
 <script>
-import Navigation from '../components/Navigation.vue';
-import PanelRight from '../components/PanelRight.vue';
+import SideBar from '../components/SideBar.vue';
+import TopMenu from '../components/TopMenu.vue';
 
 export default {
   components: {
-    Navigation,
-    PanelRight,
+    SideBar,
+    TopMenu,
   },
   data() {
-    return {};
+    return {
+      isSideMenuOpen: false,
+    };
   },
-  methods: {},
+  methods: {
+    onCloseSideMenu() {
+      this.isSideMenuOpen = false;
+    },
+
+    onToggleSideMenu() {
+      console.log('togglesitemenu');
+      this.isSideMenuOpen = !this.isSideMenuOpen;
+    },
+
+  },
 };
 </script>

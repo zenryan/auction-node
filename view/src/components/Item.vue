@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <div class="py-8">
+    <div class="">
       <!-- page header -->
       <div class="flex items-stretch">
         <div class="flex-1 text-left left-0 py-2">

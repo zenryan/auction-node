@@ -1494,7 +1494,7 @@ export default {
 
   methods: {
     closeSideMenu() {
-      return true;
+      this.isSideMenuOpen = false;
     },
 
     toggleSideMenu() {
