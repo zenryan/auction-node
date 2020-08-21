@@ -17,21 +17,21 @@
         <component :is="itemSvg" />
       </SideBarListItem>
 
-      <SideBarListItem link-name="Bid auction" link-to="/app/item">
+      <SideBarListItem link-name="Bid auction" link-to="/app/bid/auction">
         <component :is="mouseClickSvg" />
       </SideBarListItem>
 
-      <SideBarListItem link-name="Bid History" link-to="/app/item">
+      <SideBarListItem link-name="Bid History" link-to="/app/bid/history">
         <component :is="threeLineSvg" />
       </SideBarListItem>
 
-      <SideBarListItem link-name="Pages" link-to="/app/item">
+      <SideBarListItem link-name="Pages" link-to="/app/pages">
         <component :is="pagesSvg" />
       </SideBarListItem>
     </ul>
     <div class="px-6 my-6">
       <button
-        class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+        class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
       >
         Create account
         <span class="ml-2" aria-hidden="true">+</span>

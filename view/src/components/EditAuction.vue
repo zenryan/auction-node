@@ -52,134 +52,130 @@
         </div>
       </div>
 
-      <div class="flex">
-        <div
-          class="mr-6 w-1/2 mt-8 py-2 flex-shrink-0 flex flex-col bg-orange
-                        dark:bg-gray-600 rounded-lg"
-        >
-          <form class="w-full max-w-lg">
-            <div class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3">
-                <label
-                  class="block uppercase tracking-wide text-gray-700
-                                      text-xs font-bold mb-2"
+      <!-- Form -->
+      <div class="bg-white shadow rounded-lg p-6">
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <!-- Title -->
+          <div
+            class="border col-span-1 xl:col-span-2 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+          >
+            <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+              <p>
+                <label for="name" class="bg-white text-gray-600 px-1"
+                  >Title *</label
                 >
-                  Title
-                </label>
-                <input
-                  class="appearance-none block w-full bg-gray-200
-                        text-gray-700 border border-red-600 rounded py-3 px-4 mb-3
-                        leading-tight focus:outline-none focus:bg-white
-                        focus:border-gray-500"
-                  id="nick"
-                  type="text"
-                  v-model="form.title"
-                />
-                <p class="text-gray-600 text-xs italic">
-                  Title of the item
-                </p>
-                <p class="text-red-500 text-xs italic">
-                  Please fill out this field.
-                </p>
-              </div>
+              </p>
             </div>
-            <div class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs
-                        font-bold mb-2"
-                >
-                  Description
-                </label>
-                <input
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 border
-                        border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none
-                        focus:bg-white focus:border-gray-500"
-                  id="email"
-                  type="email"
-                  v-model="form.desc"
-                />
-                <p class="text-gray-600 text-xs italic">
-                  Brief Description
-                </p>
-              </div>
-            </div>
-            <div class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                >
-                  Starting price
-                </label>
-                <input
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 border
-                        border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none
-                        focus:bg-white focus:border-gray-500"
-                  v-model="form.startprice"
-                />
-              </div>
-            </div>
+            <p>
+              <input
+                ref="title"
+                v-model="form.title"
+                autocomplete="false"
+                class="py-1 px-1 text-gray-900 outline-none block h-full w-full"
+              />
+            </p>
+            <p class="text-red-500 text-xs italic mt-2">
+              Please fill out this field.
+            </p>
+          </div>
 
-            <div class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          <!-- Starting price -->
+          <div
+            class="border col-span-1 xl:col-span-1 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+          >
+            <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+              <p>
+                <label for="lastname" class="bg-white text-gray-600 px-1"
+                  >Starting price *</label
                 >
-                  Start date
-                </label>
-                <input
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 border
-                        border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none
-                        focus:bg-white focus:border-gray-500"
-                  v-model="form.startdate"
-                />
-                <p class="text-gray-600 text-xs italic">
-                  Re-size can be disabled by set by resize-none / resize-y /
-                  resize-x / resize
-                </p>
-              </div>
+              </p>
             </div>
+            <p>
+              <input
+                v-model="form.startprice"
+                autocomplete="false"
+                class="py-1 px-1 outline-none block h-full w-full"
+              />
+            </p>
+          </div>
 
-            <div class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          <!-- Description -->
+          <div
+            class="border col-span-1 xl:col-span-3 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+          >
+            <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+              <p>
+                <label for="username" class="bg-white text-gray-600 px-1"
+                  >Description *</label
                 >
-                  End date
-                </label>
-                <input
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 border
-                        border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none
-                        focus:bg-white focus:border-gray-500"
-                  v-model="form.enddate"
-                />
-                <p class="text-gray-600 text-xs italic">
-                  Re-size can be disabled by set by resize-none / resize-y /
-                  resize-x / resize
-                </p>
-              </div>
+              </p>
             </div>
+            <p>
+              <input
+                v-model="form.desc"
+                autocomplete="false"
+                class="py-1 px-1 outline-none block h-full w-full"
+              />
+            </p>
+          </div>
 
-            <div class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full px-3">
-                <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          <!-- Start date -->
+          <div
+            class="border col-span-1 xl:col-span-1 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+          >
+            <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+              <p>
+                <label for="username" class="bg-white text-gray-600 px-1"
+                  >Start date *</label
                 >
-                  Detail description
-                </label>
-                <textarea
-                  class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700
-                        border border-gray-200 rounded py-3 px-4 mb-3 leading-tight
-                        focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
-                  v-model="form.detail"
-                >
-                </textarea>
-                <p class="text-gray-600 text-xs italic">
-                  Detail description
-                </p>
-              </div>
+              </p>
             </div>
-          </form>
+            <p>
+              <Datetime type="datetime" v-model="form.startdate"></Datetime>
+            </p>
+          </div>
+
+          <!-- End date -->
+          <div
+            class="border col-span-1 xl:col-span-1 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+          >
+            <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+              <p>
+                <label for="username" class="bg-white text-gray-600 px-1"
+                  >End date *</label
+                >
+              </p>
+            </div>
+            <p>
+              <Datetime type="datetime" v-model="form.enddate"></Datetime>
+            </p>
+          </div>
+
+          <!-- Detail -->
+          <div
+            class="border col-span-1 xl:col-span-3 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+          >
+            <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+              <p>
+                <label for="username" class="bg-white text-gray-600 px-1"
+                  >Detail description
+                </label>
+              </p>
+            </div>
+            <p>
+              <textarea
+                v-model="form.detail"
+                autocomplete="false"
+                class="py-1 px-1 outline-none block w-full resize-none"
+              />
+            </p>
+          </div>
+
+          <div
+            class="col-span-1 xl:col-span-3 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500"
+          >
+            <SelectAuctionItems v-show="form.id" />
+          </div>
         </div>
       </div>
     </div>
@@ -188,8 +184,15 @@
 </template>
 
 <script>
+import moment from 'moment';
+import Datetime from '../ui/Datetime.vue';
+import SelectAuctionItems from './SelectAuctionItems.vue';
+
 export default {
-  components: {},
+  components: {
+    Datetime,
+    SelectAuctionItems,
+  },
   data() {
     return {
       error: null,
@@ -198,18 +201,33 @@ export default {
         desc: 'default',
         startprice: 1,
         detail: 'default',
-        startdate: '2020-10-10 01:00:00',
-        enddate: '2020-10-10 02:00:00',
+        startdate: moment().toISOString(),
+        enddate: moment().toISOString(),
       },
+      auctionId: null,
     };
+  },
+  mounted() {
+    this.$refs.title.focus();
+    this.auctionId = this.$route.params.auctionId;
+    if (this.auctionId) this.fetchAuction(this.auctionId);
   },
   methods: {
     async onClickSave() {
       try {
-        await this.$http.post('/auction/create', {
+        const response = await this.$http.post('/auction/create', {
           auction: this.form,
         });
-        this.$router.push('/app/auction');
+        this.form = response.data.body.auction;
+      } catch (e) {
+        console.error(`Error ${JSON.stringify(e.response.data)}`);
+        this.error = e.response.data.error;
+      }
+    },
+    async fetchAuction(auctionId) {
+      try {
+        const response = await this.$http.get(`/auction/${auctionId}`);
+        this.form = response.data.auction;
       } catch (e) {
         console.error(`Error ${JSON.stringify(e.response.data)}`);
         this.error = e.response.data.error;

@@ -1,6 +1,7 @@
 import express from 'express'
 const router = express.Router()
 import { Item } from '../entity/items';
+import { Status } from '../entity/enum';
 
 router.get('/', async function (
   req: express.Request,
@@ -31,6 +32,7 @@ router.post('/create', async function (
     item.desc = reqItem.title;
     item.detail = reqItem.detail;
     item.price = reqItem.price;
+    item.status = Status.active;
     await item.save();
 
     const data = {
@@ -50,6 +52,16 @@ router.post('/create', async function (
           }
       });
   }
+});
+
+router.get('/search', async function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  const { q } = req.query;
+  const items = await Item.searchbyText(q);
+  res.json(items);
 });
 
 module.exports = router;

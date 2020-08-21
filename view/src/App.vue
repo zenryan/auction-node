@@ -15,6 +15,8 @@ a.router-link-exact-active {
 </style>
 
 <script>
+import 'vue-datetime/dist/vue-datetime.css';
+
 export default {
   components: {},
   data() {

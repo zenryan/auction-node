@@ -5,7 +5,7 @@
     </h2>
     <!-- CTA -->
     <a
-      class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
+      class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-blue-100 bg-blue-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
       href="https://github.com/estevanmaito/windmill-dashboard"
     >
       <div class="flex items-center">
@@ -518,7 +518,7 @@
             <ul class="inline-flex items-center">
               <li>
                 <button
-                  class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
+                  class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-blue"
                   aria-label="Previous"
                 >
                   <svg
@@ -536,28 +536,28 @@
               </li>
               <li>
                 <button
-                  class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                  class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-blue"
                 >
                   1
                 </button>
               </li>
               <li>
                 <button
-                  class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                  class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-blue"
                 >
                   2
                 </button>
               </li>
               <li>
                 <button
-                  class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple"
+                  class="px-3 py-1 text-white transition-colors duration-150 bg-blue-600 border border-r-0 border-blue-600 rounded-md focus:outline-none focus:shadow-outline-blue"
                 >
                   3
                 </button>
               </li>
               <li>
                 <button
-                  class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                  class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-blue"
                 >
                   4
                 </button>
@@ -567,21 +567,21 @@
               </li>
               <li>
                 <button
-                  class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                  class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-blue"
                 >
                   8
                 </button>
               </li>
               <li>
                 <button
-                  class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                  class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-blue"
                 >
                   9
                 </button>
               </li>
               <li>
                 <button
-                  class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
+                  class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-blue"
                   aria-label="Next"
                 >
                   <svg
@@ -631,7 +631,7 @@
           </div>
           <div class="flex items-center">
             <span
-              class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
+              class="inline-block w-3 h-3 mr-1 bg-blue-600 rounded-full"
             ></span>
             <span>Bags</span>
           </div>
@@ -654,7 +654,7 @@
           </div>
           <div class="flex items-center">
             <span
-              class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
+              class="inline-block w-3 h-3 mr-1 bg-blue-600 rounded-full"
             ></span>
             <span>Paid</span>
           </div>

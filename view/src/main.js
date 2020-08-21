@@ -1,7 +1,10 @@
 import Vue from 'vue';
 import axios from 'axios';
+import { Datetime } from 'vue-datetime';
+
 import App from './App.vue';
 import router from './router';
+// You need a specific loader for CSS files
 
 // TODO: no production ready
 const axiosInstance = axios.create({
@@ -10,6 +13,7 @@ const axiosInstance = axios.create({
   mode: 'cors',
 });
 
+Vue.use(Datetime);
 Vue.config.productionTip = false;
 Vue.prototype.$http = axiosInstance;
 

@@ -168,6 +168,7 @@
                 </label>
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <router-link :to="showAuctionLink(item.id)">
                 <div class="flex items-center">
                   <div class="flex-shrink-0 w-10 h-10">
                     <img
@@ -182,6 +183,7 @@
                     </p>
                   </div>
                 </div>
+                </router-link>
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <p class="text-gray-900 whitespace-no-wrap">
@@ -308,6 +310,9 @@ export default {
   },
 
   methods: {
+    showAuctionLink(auctionId) {
+      return `/app/auction/show/${auctionId}`;
+    },
     onClickNew() {
       this.$router.push('/app/auction/create');
     },

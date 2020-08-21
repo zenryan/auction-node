@@ -1,11 +1,11 @@
 <template>
   <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
     <div
-      class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
+      class="container flex items-center justify-between h-full px-6 mx-auto text-blue-600 dark:text-blue-300"
     >
       <!-- Mobile hamburger -->
       <button
-        class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+        class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-blue"
         @click="$emit('toggleSideMenu')"
         aria-label="Menu"
       >
@@ -24,7 +24,7 @@
       </button>
       <!-- Search input -->
       <div class="flex justify-center flex-1 lg:mr-32">
-        <div class="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
+        <div class="relative w-full max-w-xl mr-6 focus-within:text-blue-500">
           <div class="absolute inset-y-0 flex items-center pl-2">
             <svg
               class="w-4 h-4"
@@ -40,7 +40,7 @@
             </svg>
           </div>
           <input
-            class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
+            class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-blue-300 focus:outline-none focus:shadow-outline-blue form-input"
             type="text"
             placeholder="Search for projects"
             aria-label="Search"
@@ -51,7 +51,7 @@
         <!-- Theme toggler -->
         <li class="flex">
           <button
-            class="rounded-md focus:outline-none focus:shadow-outline-purple"
+            class="rounded-md focus:outline-none focus:shadow-outline-blue"
             @click="toggleTheme"
             aria-label="Toggle color mode"
           >
@@ -86,7 +86,7 @@
         <!-- Notifications menu -->
         <li class="relative">
           <button
-            class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
+            class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-blue"
             @click="toggleNotificationsMenu"
             @keydown.escape="closeNotificationsMenu"
             aria-label="Notifications"
@@ -156,7 +156,7 @@
         <!-- Profile menu -->
         <li class="relative">
           <button
-            class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+            class="align-middle rounded-full focus:shadow-outline-blue focus:outline-none"
             @click="toggleProfileMenu"
             @keydown.escape="closeProfileMenu"
             aria-label="Account"

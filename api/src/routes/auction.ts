@@ -1,9 +1,12 @@
-import express from 'express'
-const router = express.Router()
-const Not = require('you-are-not')
-const not = Not.create()
+import express from 'express';
+import assert from 'assert';
+const router = express.Router();
+const Not = require('you-are-not');
+const not = Not.create();
 import { Auction } from '../entity/auctions';
-import cors from 'cors';
+import { Item } from '../entity/items';
+import { AuctionItem } from '../entity/auction_items';
+import { Status } from '../entity/enum';
 
 router.get('/', async function (
   req: express.Request,
@@ -20,6 +23,33 @@ router.get('/', async function (
       total: 1000,
     }
   });
+});
+
+router.get('/:auctionId', async function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  try {
+    const { auctionId } = req.params;
+
+    const auction = await Auction.findOne({id: parseInt(auctionId, 10)});
+    assert(auction !== undefined, 'Error: Auction not found');
+  
+    res.send({
+      message: 'GET',
+      auction,
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+        message: "ERROR",
+        error: {
+            code: "AUCTION_CREATE_ERROR",
+            error_message: `auction/create error`
+        }
+    });
+  }
 });
 
 router.post('/create', async function (
@@ -56,10 +86,45 @@ router.post('/create', async function (
         }
     });
   }
+});
 
+router.post('/:auctionId/item/:itemId', async function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  try {
+    const { auctionId, itemId } = req.params;
 
+    const item = await Item.findOne({id: parseInt(itemId, 10)});
+    assert(item !== undefined, 'Error: Item not found');
 
+    let auctionItem = new AuctionItem();
+    auctionItem.auction_id = parseInt(auctionId, 10);
+    auctionItem.item_id = parseInt(itemId, 10);
+    auctionItem.startingprice = 100;
+    auctionItem.status = Status.active;
+    auctionItem.save();
 
+    item.status = Status.forAuction;
+    item.save();
+
+    const data = {
+      message: "LISTED",
+      item
+    };
+    res.status(200).json(data);
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+        message: "ERROR",
+        error: {
+            code: "AUCTION_ITEM_CREATE_ERROR",
+            error_message: `Adding auctionItem error`
+        }
+    });
+  }
 });
 
 module.exports = router;

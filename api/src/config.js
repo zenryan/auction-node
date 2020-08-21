@@ -36,7 +36,7 @@ const rootPath = process.env.ROOT_PATH || "/";
 
 const config = {
   env,
-  debug: process.env.DEBUG === 'TRUE' ? true : false,
+  debug: process.env.DEBUG === 'true' ? true : false,
   rootPath: process.env.ROOT_PATH || "/",
   // tz: process.env.TZ,
   app: {

@@ -17,7 +17,7 @@
         <ul class="mt-6">
           <li class="relative px-6 py-3">
             <span
-              class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+              class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg"
               aria-hidden="true"
             ></span>
             <a
@@ -254,7 +254,7 @@
         </ul>
         <div class="px-6 my-6">
           <button
-            class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+            class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
           >
             Create account
             <span class="ml-2" aria-hidden="true">+</span>
@@ -287,7 +287,7 @@
         <ul class="mt-6">
           <li class="relative px-6 py-3">
             <span
-              class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+              class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg"
               aria-hidden="true"
             ></span>
             <a
@@ -524,7 +524,7 @@
         </ul>
         <div class="px-6 my-6">
           <button
-            class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+            class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
           >
             Create account
             <span class="ml-2" aria-hidden="true">+</span>
@@ -536,11 +536,11 @@
     <div class="flex flex-col flex-1 w-full">
       <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
         <div
-          class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
+          class="container flex items-center justify-between h-full px-6 mx-auto text-blue-600 dark:text-blue-300"
         >
           <!-- Mobile hamburger -->
           <button
-            class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+            class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-blue"
             @click="toggleSideMenu"
             aria-label="Menu"
           >
@@ -560,7 +560,7 @@
           <!-- Search input -->
           <div class="flex justify-center flex-1 lg:mr-32">
             <div
-              class="relative w-full max-w-xl mr-6 focus-within:text-purple-500"
+              class="relative w-full max-w-xl mr-6 focus-within:text-blue-500"
             >
               <div class="absolute inset-y-0 flex items-center pl-2">
                 <svg
@@ -577,7 +577,7 @@
                 </svg>
               </div>
               <input
-                class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
+                class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-blue-300 focus:outline-none focus:shadow-outline-blue form-input"
                 type="text"
                 placeholder="Search for projects"
                 aria-label="Search"
@@ -588,7 +588,7 @@
             <!-- Theme toggler -->
             <li class="flex">
               <button
-                class="rounded-md focus:outline-none focus:shadow-outline-purple"
+                class="rounded-md focus:outline-none focus:shadow-outline-blue"
                 @click="toggleTheme"
                 aria-label="Toggle color mode"
               >
@@ -623,7 +623,7 @@
             <!-- Notifications menu -->
             <li class="relative">
               <button
-                class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
+                class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-blue"
                 @click="toggleNotificationsMenu"
                 @keydown.escape="closeNotificationsMenu"
                 aria-label="Notifications"
@@ -694,7 +694,7 @@
             <!-- Profile menu -->
             <li class="relative">
               <button
-                class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+                class="align-middle rounded-full focus:shadow-outline-blue focus:outline-none"
                 @click="toggleProfileMenu"
                 @keydown.escape="closeProfileMenu"
                 aria-label="Account"
@@ -799,7 +799,7 @@
           </h2>
           <!-- CTA -->
           <a
-            class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
+            class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-blue-100 bg-blue-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
             href="https://github.com/estevanmaito/windmill-dashboard"
           >
             <div class="flex items-center">
@@ -1325,7 +1325,7 @@
                   <ul class="inline-flex items-center">
                     <li>
                       <button
-                        class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
+                        class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-blue"
                         aria-label="Previous"
                       >
                         <svg
@@ -1343,28 +1343,28 @@
                     </li>
                     <li>
                       <button
-                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-blue"
                       >
                         1
                       </button>
                     </li>
                     <li>
                       <button
-                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-blue"
                       >
                         2
                       </button>
                     </li>
                     <li>
                       <button
-                        class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple"
+                        class="px-3 py-1 text-white transition-colors duration-150 bg-blue-600 border border-r-0 border-blue-600 rounded-md focus:outline-none focus:shadow-outline-blue"
                       >
                         3
                       </button>
                     </li>
                     <li>
                       <button
-                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-blue"
                       >
                         4
                       </button>
@@ -1374,21 +1374,21 @@
                     </li>
                     <li>
                       <button
-                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-blue"
                       >
                         8
                       </button>
                     </li>
                     <li>
                       <button
-                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-blue"
                       >
                         9
                       </button>
                     </li>
                     <li>
                       <button
-                        class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
+                        class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-blue"
                         aria-label="Next"
                       >
                         <svg
@@ -1442,7 +1442,7 @@
                 </div>
                 <div class="flex items-center">
                   <span
-                    class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
+                    class="inline-block w-3 h-3 mr-1 bg-blue-600 rounded-full"
                   ></span>
                   <span>Bags</span>
                 </div>
@@ -1467,7 +1467,7 @@
                 </div>
                 <div class="flex items-center">
                   <span
-                    class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
+                    class="inline-block w-3 h-3 mr-1 bg-blue-600 rounded-full"
                   ></span>
                   <span>Paid</span>
                 </div>
