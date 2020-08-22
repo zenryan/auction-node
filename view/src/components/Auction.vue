@@ -32,9 +32,9 @@
                 w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight
                 focus:outline-none focus:bg-white focus:border-gray-500"
           >
-            <option>5</option>
-            <option>10</option>
             <option>20</option>
+            <option>50</option>
+            <option>100</option>
           </select>
           <div
             class="pointer-events-none absolute inset-y-0 right-0 flex items-center
@@ -129,7 +129,7 @@
           <thead>
             <tr class="text-left">
               <th
-                class="py-2 px-3 sticky top-0 border-b border-gray-200 bg-gray-100"
+                class="py-2 px-3 sticky top-0 border-b border-gray-200 bg-gray-200"
               >
                 <label
                   class="text-teal-500 inline-flex justify-between
@@ -145,7 +145,7 @@
               <th
                 v-for="head in itemHeader"
                 :key="head.name"
-                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100
+                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200
                     text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
               >
                 {{ head.name }}
@@ -251,11 +251,15 @@
         </div>
       </div>
     </div>
-    <pre class="text-left">{{ $data }}</pre>
   </div>
 </template>
 
 <script>
+// Picture viewer
+// https://vue-cool-lightbox.lucaspulliese.com/
+// Upload image for tiptap
+// https://medium.com/@kailaash/copy-or-drag-and-drop-multiple-images-to-tiptap-editor-for-vue-3bdce8bf7e38
+
 export default {
   components: {},
   data() {
@@ -313,6 +317,7 @@ export default {
     showAuctionLink(auctionId) {
       return `/app/auction/show/${auctionId}`;
     },
+
     onClickNew() {
       this.$router.push('/app/auction/create');
     },

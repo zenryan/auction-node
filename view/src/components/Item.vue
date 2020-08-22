@@ -35,9 +35,9 @@
                     py-2 px-4 pr-8 leading-tight focus:outline-none
                     focus:bg-white focus:border-gray-500"
             >
-              <option>5</option>
-              <option>10</option>
               <option>20</option>
+              <option>50</option>
+              <option>100</option>
             </select>
             <div
               class="pointer-events-none absolute inset-y-0 right-0 flex
@@ -135,7 +135,7 @@
               <tr class="text-left">
                 <th
                   class="py-2 px-3 sticky top-0 border-b border-gray-200
-                        bg-gray-100"
+                        bg-gray-200"
                 >
                   <label
                     class="text-teal-500 inline-flex justify-between
@@ -152,7 +152,7 @@
                 <th
                   v-for="head in itemHeader"
                   :key="head.name"
-                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100
+                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200
                         text-left text-xs font-semibold text-gray-600 uppercase
                         tracking-wider"
                 >
@@ -180,29 +180,26 @@
                   </label>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <div class="flex items-center">
-                    <div class="flex-shrink-0 w-10 h-10">
-                      <img
-                        class="w-full h-full rounded-full"
-                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                        alt=""
-                      />
+                  <router-link :to="showItemLink(item.id)">
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 w-10 h-10">
+                        <img
+                          class="w-full h-full rounded-full"
+                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                          alt=""
+                        />
+                      </div>
+                      <div class="ml-3">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                          {{ item.title }}
+                        </p>
+                      </div>
                     </div>
-                    <div class="ml-3">
-                      <p class="text-gray-900 whitespace-no-wrap">
-                        {{ item.title }}
-                      </p>
-                    </div>
-                  </div>
+                  </router-link>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   <p class="text-gray-900 whitespace-no-wrap">
                     {{ item.desc }}
-                  </p>
-                </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <p class="text-gray-900 whitespace-no-wrap">
-                    {{ item.detail }}
                   </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -243,7 +240,6 @@
         </div>
       </div>
     </div>
-    <pre class="text-left">{{ $data }}</pre>
   </div>
 </template>
 
@@ -263,9 +259,6 @@ export default {
         },
         {
           name: 'Description',
-        },
-        {
-          name: 'Details',
         },
         {
           name: 'Price',
@@ -302,6 +295,10 @@ export default {
   methods: {
     onClickNew() {
       this.$router.push('/app/item/create/');
+    },
+
+    showItemLink(auctionId) {
+      return `/app/item/show/${auctionId}`;
     },
 
     selectAllCheckbox($event) {

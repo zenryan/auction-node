@@ -120,7 +120,7 @@
 
           <!-- Detail -->
           <div
-            class="border col-span-1 xl:col-span-3 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
+            class="border col-span-1 xl:col-span-3 relative rounded p-1"
           >
             <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
               <p>
@@ -130,39 +130,56 @@
               </p>
             </div>
             <p>
-              <textarea
-                v-model="form.detail"
-                autocomplete="false"
-                class="py-1 px-1 text-gray-900 outline-none block h-full w-full resize-none"
-              />
+              <Editor v-model="form.detail" :editable="editorEditable" />
             </p>
           </div>
         </div>
+        <!-- <Editor /> -->
       </div>
-
-    <pre class="text-left">{{ $data }}</pre>
   </div>
 </template>
 
 <script>
+import Editor from '../ui/Editor.vue';
+
 export default {
-  components: {},
+  components: {
+    Editor,
+  },
+
   data() {
     return {
-      item: null,
       error: null,
       form: {
-        title: 'default',
-        desc: 'default',
+        title: 'Item',
+        desc: 'Item description',
         detail: 'default',
         price: '100',
       },
+      editorEditable: true,
+      itemId: null,
     };
   },
+
   mounted() {
     this.$refs.title.focus();
+    this.itemId = this.$route.params.itemId;
+    if (this.itemId) {
+      this.fetchItem(this.itemId);
+    }
   },
   methods: {
+    async fetchItem(itemId) {
+      try {
+        const url = `/item/${itemId}`;
+        const response = await this.$http.get(url);
+
+        if (response.data.item) this.form = response.data.item;
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
     async onClickSave() {
       try {
         await this.$http.post('/item/create', {

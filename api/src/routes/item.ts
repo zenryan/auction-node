@@ -2,6 +2,7 @@ import express from 'express'
 const router = express.Router()
 import { Item } from '../entity/items';
 import { Status } from '../entity/enum';
+import assert from 'assert';
 
 router.get('/', async function (
   req: express.Request,
@@ -20,6 +21,22 @@ router.get('/', async function (
   });
 })
 
+router.get('/:itemId', async function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  const { itemId } = req.params;
+
+  const item = await Item.findOne({ id: parseInt(itemId,0) });
+  assert(item !== undefined, 'Item not found');
+
+  res.json({
+    message: 'GET',
+    item,
+  });
+})
+
 router.post('/create', async function (
   req: express.Request,
   res: express.Response,
@@ -28,6 +45,7 @@ router.post('/create', async function (
   try {
     const { item: reqItem } = req.body;
     const item = new Item();
+    if (reqItem.id) item.id = reqItem.id;
     item.title = reqItem.title;
     item.desc = reqItem.title;
     item.detail = reqItem.detail;
@@ -36,21 +54,21 @@ router.post('/create', async function (
     await item.save();
 
     const data = {
-        message: "CREATED",
-        body: {
-            item,
-        },
+      message: "CREATED",
+      body: {
+        item,
+      },
     };
     res.status(200).json(data);
   } catch (e) {
-      console.error(e);
-      res.status(500).json({
-          message: "ERROR",
-          error: {
-              code: "ITEM_CREATE_ERROR",
-              error_message: `item/create error`
-          }
-      });
+    console.error(e);
+    res.status(500).json({
+      message: "ERROR",
+      error: {
+        code: "ITEM_CREATE_ERROR",
+        error_message: `item/create error`
+      }
+    });
   }
 });
 

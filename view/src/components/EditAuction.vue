@@ -174,12 +174,11 @@
           <div
             class="col-span-1 xl:col-span-3 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500"
           >
-            <SelectAuctionItems v-show="form.id" />
+            <SelectAuctionItems v-show="form.id" :auctionId="form.id"/>
           </div>
         </div>
       </div>
     </div>
-    <pre>{{ $data }}</pre>
   </div>
 </template>
 
@@ -197,8 +196,8 @@ export default {
     return {
       error: null,
       form: {
-        title: 'default',
-        desc: 'default',
+        title: 'Auction',
+        desc: 'Auction description',
         startprice: 1,
         detail: 'default',
         startdate: moment().toISOString(),
@@ -210,7 +209,9 @@ export default {
   mounted() {
     this.$refs.title.focus();
     this.auctionId = this.$route.params.auctionId;
-    if (this.auctionId) this.fetchAuction(this.auctionId);
+    if (this.auctionId) {
+      this.fetchAuction(this.auctionId);
+    }
   },
   methods: {
     async onClickSave() {

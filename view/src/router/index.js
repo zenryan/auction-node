@@ -58,6 +58,12 @@ const routes = [
           import(/* webpackChunkName: "item" */ '../components/EditItem.vue'),
       },
       {
+        path: 'item/show/:itemId',
+        name: 'ShowItem',
+        component: () =>
+          import(/* webpackChunkName: "item" */ '../components/EditItem.vue'),
+      },
+      {
         path: 'auction',
         name: 'Auction',
         component: () =>

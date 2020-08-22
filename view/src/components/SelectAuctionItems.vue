@@ -122,13 +122,14 @@ export default {
   components: {
     Suggestion,
   },
+  props: ['auctionId'],
   data() {
     return {
       searchQuery: '',
       selectedSearchItem: null,
       searchOptions: {
         inputClass: `appearance-none block w-full bg-gray-200
-          text-gray-700 border rounded py-3 pl-8 pr-6 
+          text-gray-700 border rounded py-3 pl-8 pr-6
           leading-tight focus:outline-none focus:bg-white
           focus:border-gray-500`,
       },
@@ -140,10 +141,24 @@ export default {
         { name: '' },
       ],
       items: [],
-      auctionId: 1,
     };
   },
+  watch: {
+    async auctionId(val) {
+      this.items = (!val) ? [] : await this.fetchItems(val);
+    },
+  },
   methods: {
+    async fetchItems(auctionId) {
+      try {
+        const url = `/auction/${auctionId}/item`;
+        const response = await this.$http.get(url);
+        return response.data.items;
+      } catch (e) {
+        console.log(e);
+        return [];
+      }
+    },
     onInputChange(query) {
       if (query.trim().length === 0) {
         return null;
