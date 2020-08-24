@@ -1,6 +1,10 @@
 <template>
   <div>
-    <EditorMenuBar v-show="editable" :editor="editor" v-slot="{ commands, isActive }">
+    <EditorMenuBar
+      v-show="editable"
+      :editor="editor"
+      v-slot="{ commands, isActive }"
+    >
       <div class="rounded p-2 bg-gray-200">
         <button
           :class="{ 'is-active': isActive.heading({ level: 1 }) }"
@@ -281,12 +285,14 @@ import {
   History,
   HorizontalRule,
 } from 'tiptap-extensions';
+import ImageUpload from '../plugins/ImageUpload';
 
 export default {
   components: {
     EditorMenuBar,
     EditorContent,
   },
+
   props: {
     value: {
       type: String,
@@ -296,12 +302,6 @@ export default {
       default() {
         return false;
       },
-    },
-  },
-
-  watch: {
-    value(val) {
-      this.editor.content = val;
     },
   },
 
@@ -327,9 +327,14 @@ export default {
           new Underline(),
           new History(),
           new HorizontalRule(),
+          new ImageUpload({
+            // Method that handles the image upload and returns a url(string)
+            uploader: (image) => this.uploadImage(image),
+          }),
         ],
         content: this.value,
         onUpdate: ({ getHTML }) => {
+          console.log('onupdate');
           this.html = getHTML();
           this.$emit('input', this.html);
         },
@@ -337,6 +342,45 @@ export default {
       html: '',
     };
   },
+
+  methods: {
+    setContent(content) {
+      console.log('setContent');
+      this.editor.setContent(content);
+    },
+    /* eslint consistent-return: "off" */
+    async uploadImage(selectedFile) {
+      // Restricts maxAllowedFileSizeMb to 5
+      if (selectedFile.size / 1024 / 1024 > 5) {
+        // handle error
+        return undefined;
+      }
+
+      // Check the allowed content type
+      if (
+        !['image/jpeg', 'image/png', 'image/gif'].includes(selectedFile.type)
+      ) {
+        // handle error
+        return undefined;
+      }
+
+      // Optionally you can set a state here so as to toggle the editor to readonly mode until the image is uploaded.
+      this.imageUploadInProgress = true;
+      try {
+        // const result = await this.startDirectUpload(selectedFile);
+        const result = {};
+        result.publicThumbnailUrl =
+          'https://miro.medium.com/fit/c/256/256/1*IwfNAlFwaHYzzZ0tUQoFWA.jpeg';
+        this.imageUploadInProgress = true;
+        // Handle Upload and return URL
+        return result.publicThumbnailUrl || undefined;
+      } catch (e) {
+        this.imageUploadInProgress = true;
+        console.error(e);
+      }
+    },
+  },
+
   beforeDestroy() {
     this.editor.destroy();
   },

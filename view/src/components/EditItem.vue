@@ -60,7 +60,7 @@
           >
             <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
               <p>
-                <label for="name" class="bg-white text-gray-600 px-1"
+                <label ref="title" class="bg-white text-gray-600 px-1"
                   >Title *</label
                 >
               </p>
@@ -130,12 +130,13 @@
               </p>
             </div>
             <p>
-              <Editor v-model="form.detail" :editable="editorEditable" />
+              <Editor ref="editor" v-model="form.detail" :editable="editorEditable" />
             </p>
           </div>
         </div>
         <!-- <Editor /> -->
       </div>
+      <pre>{{$data}}</pre>
   </div>
 </template>
 
@@ -161,11 +162,12 @@ export default {
     };
   },
 
-  mounted() {
+  async mounted() {
     this.$refs.title.focus();
     this.itemId = this.$route.params.itemId;
     if (this.itemId) {
-      this.fetchItem(this.itemId);
+      await this.fetchItem(this.itemId);
+      this.$refs.editor.setContent(this.form.detail);
     }
   },
   methods: {

@@ -57,7 +57,8 @@
       "func-names": "off",
       "no-param-reassign": "off",
       "implicit-arrow-linebreak": "off",
-      "max-len": "off"
+      "max-len": "off",
+      "operator-linebreak": "off"
     }
   },
   "browserslist": [
