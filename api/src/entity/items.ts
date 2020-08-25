@@ -22,7 +22,7 @@ export class Item extends BaseEntity {
     @Column()
     desc: string;
 
-    @Column()
+    @Column('text')
     detail: string;
 
     @Column()

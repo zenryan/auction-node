@@ -258,7 +258,7 @@
     </EditorMenuBar>
 
     <div class="p-2">
-      <editor-content :editor="editor" class="p-1 w-full prose xl:prose-xl">
+      <editor-content id="editor" :editor="editor" class="p-1 w-full prose xl:prose-xl overflow-x-auto">
       </editor-content>
     </div>
   </div>
@@ -340,6 +340,7 @@ export default {
         },
       }),
       html: '',
+      imageUploadInProgress: false,
     };
   },
 
@@ -368,12 +369,22 @@ export default {
       this.imageUploadInProgress = true;
       try {
         // const result = await this.startDirectUpload(selectedFile);
-        const result = {};
-        result.publicThumbnailUrl =
-          'https://miro.medium.com/fit/c/256/256/1*IwfNAlFwaHYzzZ0tUQoFWA.jpeg';
+        const url = '/file/upload';
+        const form = new FormData();
+        const config = {
+          headers: {
+            'Content-type': 'multipart/form-data',
+          },
+        };
+
+        form.append('picture', selectedFile);
+        form.append('item_id', this.$route.params.itemId);
+
+        const result = await this.$http.post(url, form, config);
+
         this.imageUploadInProgress = true;
         // Handle Upload and return URL
-        return result.publicThumbnailUrl || undefined;
+        return result.data.body.image.url || undefined;
       } catch (e) {
         this.imageUploadInProgress = true;
         console.error(e);
@@ -386,3 +397,20 @@ export default {
   },
 };
 </script>
+
+<style lang="css">
+.ProseMirror-focused {
+  outline: none;
+}
+
+#editor img {
+  max-height: 200px;
+  max-width: 200px;
+  margin-right: 2rem;
+}
+
+#editor p {
+  display: flex;
+}
+
+</style>

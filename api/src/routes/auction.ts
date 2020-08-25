@@ -61,6 +61,7 @@ router.post('/create', async function (
   try {
     const { auction: reqAuction } = req.body;
     const auction = new Auction();
+    if (reqAuction.id) auction.id = reqAuction.id;
     auction.title = reqAuction.title;
     auction.desc = reqAuction.desc;
     auction.startprice = reqAuction.startprice;

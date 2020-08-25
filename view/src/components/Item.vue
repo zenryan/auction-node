@@ -298,7 +298,7 @@ export default {
     },
 
     showItemLink(auctionId) {
-      return `/app/item/show/${auctionId}`;
+      return `/app/item/edit/${auctionId}`;
     },
 
     selectAllCheckbox($event) {

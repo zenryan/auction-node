@@ -4,7 +4,7 @@
       <div class="flex items-stretch">
         <div class="flex-1 text-left left-0 py-2">
           <h2 class="text-2xl font-semibold leading-tight py-2">
-            Create item
+            Manage item
           </h2>
         </div>
         <div class="self-center flex-1 text-center py-2"></div>
@@ -134,9 +134,7 @@
             </p>
           </div>
         </div>
-        <!-- <Editor /> -->
       </div>
-      <pre>{{$data}}</pre>
   </div>
 </template>
 
@@ -184,11 +182,12 @@ export default {
 
     async onClickSave() {
       try {
-        await this.$http.post('/item/create', {
+        const response = await this.$http.post('/item/create', {
           item: this.form,
           mode: 'cors',
         });
-        this.$router.push('/app/item');
+        this.form = response.data.body.item;
+        this.error = null;
       } catch (e) {
         console.error(`Error ${JSON.stringify(e.response.data)}`);
         this.error = e.response.data.error;

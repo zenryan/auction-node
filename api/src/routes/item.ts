@@ -19,22 +19,48 @@ router.get('/', async function (
       total: 1000,
     }
   });
-})
+});
+
+router.get('/search', async function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  try {
+    const { q } = req.query;
+    const items = await Item.searchbyText(q);
+    res.json(items);
+  } catch (e) {
+    console.error(e);
+  }
+
+});
 
 router.get('/:itemId', async function (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction
 ) {
-  const { itemId } = req.params;
+  try {
+    const { itemId } = req.params;
 
-  const item = await Item.findOne({ id: parseInt(itemId,0) });
-  assert(item !== undefined, 'Item not found');
+    const item = await Item.findOne({ id: parseInt(itemId, 0) });
+    assert(item !== undefined, 'Item not found');
 
-  res.json({
-    message: 'GET',
-    item,
-  });
+    res.json({
+      message: 'GET',
+      item,
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      message: "ERROR",
+      error: {
+        code: "ITEM_GET_ERROR",
+        error_message: `item/get error`
+      }
+    });
+  }
 })
 
 router.post('/create', async function (
@@ -72,14 +98,5 @@ router.post('/create', async function (
   }
 });
 
-router.get('/search', async function (
-  req: express.Request,
-  res: express.Response,
-  next: express.NextFunction
-) {
-  const { q } = req.query;
-  const items = await Item.searchbyText(q);
-  res.json(items);
-});
-
 module.exports = router;
+

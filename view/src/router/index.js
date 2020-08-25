@@ -58,7 +58,7 @@ const routes = [
           import(/* webpackChunkName: "item" */ '../components/EditItem.vue'),
       },
       {
-        path: 'item/show/:itemId',
+        path: 'item/edit/:itemId',
         name: 'ShowItem',
         component: () =>
           import(/* webpackChunkName: "item" */ '../components/EditItem.vue'),
@@ -76,7 +76,7 @@ const routes = [
           import(/* webpackChunkName: "auction" */ '../components/EditAuction.vue'),
       },
       {
-        path: 'auction/show/:auctionId',
+        path: 'auction/edit/:auctionId',
         name: 'ShowAuction',
         component: () =>
           import(/* webpackChunkName: "auction" */ '../components/EditAuction.vue'),

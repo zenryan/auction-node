@@ -74,9 +74,9 @@
                 class="py-1 px-1 text-gray-900 outline-none block h-full w-full"
               />
             </p>
-            <p class="text-red-500 text-xs italic mt-2">
+            <!-- <p class="text-red-500 text-xs italic mt-2">
               Please fill out this field.
-            </p>
+            </p> -->
           </div>
 
           <!-- Starting price -->
@@ -151,6 +151,12 @@
             </p>
           </div>
 
+          <div
+            class="col-span-1 xl:col-span-3 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500"
+          >
+            <SelectAuctionItems v-show="form.id" :auctionId="form.id"/>
+          </div>
+
           <!-- Detail -->
           <div
             class="border col-span-1 xl:col-span-3 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1"
@@ -163,19 +169,10 @@
               </p>
             </div>
             <p>
-              <textarea
-                v-model="form.detail"
-                autocomplete="false"
-                class="py-1 px-1 outline-none block w-full resize-none"
-              />
+              <Editor ref="editor" v-model="form.detail" :editable="editorEditable" />
             </p>
           </div>
 
-          <div
-            class="col-span-1 xl:col-span-3 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500"
-          >
-            <SelectAuctionItems v-show="form.id" :auctionId="form.id"/>
-          </div>
         </div>
       </div>
     </div>
@@ -186,11 +183,13 @@
 import moment from 'moment';
 import Datetime from '../ui/Datetime.vue';
 import SelectAuctionItems from './SelectAuctionItems.vue';
+import Editor from '../ui/Editor.vue';
 
 export default {
   components: {
     Datetime,
     SelectAuctionItems,
+    Editor,
   },
   data() {
     return {
@@ -203,14 +202,16 @@ export default {
         startdate: moment().toISOString(),
         enddate: moment().toISOString(),
       },
+      editorEditable: true,
       auctionId: null,
     };
   },
-  mounted() {
+  async mounted() {
     this.$refs.title.focus();
     this.auctionId = this.$route.params.auctionId;
     if (this.auctionId) {
-      this.fetchAuction(this.auctionId);
+      await this.fetchAuction(this.auctionId);
+      this.$refs.editor.setContent(this.form.detail);
     }
   },
   methods: {
@@ -220,6 +221,7 @@ export default {
           auction: this.form,
         });
         this.form = response.data.body.auction;
+        this.error = null;
       } catch (e) {
         console.error(`Error ${JSON.stringify(e.response.data)}`);
         this.error = e.response.data.error;

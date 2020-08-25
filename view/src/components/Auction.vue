@@ -192,11 +192,6 @@
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <p class="text-gray-900 whitespace-no-wrap">
-                  {{ item.detail }}
-                </p>
-              </td>
-              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <p class="text-gray-900 whitespace-no-wrap">
                   {{ item.startprice }}
                 </p>
               </td>
@@ -273,9 +268,6 @@ export default {
           name: 'Description',
         },
         {
-          name: 'Details',
-        },
-        {
           name: 'Starting price',
         },
         {
@@ -315,7 +307,7 @@ export default {
 
   methods: {
     showAuctionLink(auctionId) {
-      return `/app/auction/show/${auctionId}`;
+      return `/app/auction/edit/${auctionId}`;
     },
 
     onClickNew() {
