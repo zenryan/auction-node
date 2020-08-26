@@ -11,13 +11,12 @@
 
       <div class="flex flex-col flex-1 w-full">
         <TopMenu v-on:toggleSideMenu="onToggleSideMenu" />
-        <main class="h-full overflow-y-auto p-5">
+        <main class="h-full overflow-y-auto">
           <router-view></router-view>
         </main>
       </div>
 
       <Main />
-
     </div>
   </div>
 </template>
@@ -45,7 +44,6 @@ export default {
       console.log('togglesitemenu');
       this.isSideMenuOpen = !this.isSideMenuOpen;
     },
-
   },
 };
 </script>

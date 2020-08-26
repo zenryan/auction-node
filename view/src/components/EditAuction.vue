@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container mx-auto">
+    <div class="container mx-auto p-1 xl:p-5">
       <!-- page header -->
       <div class="flex items-stretch">
         <div class="flex-1 text-left left-0 py-2">
@@ -154,7 +154,7 @@
           <div
             class="col-span-1 xl:col-span-3 focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500"
           >
-            <SelectAuctionItems v-show="form.id" :auctionId="form.id"/>
+            <SelectAuctionItems v-show="form.id" :auctionId="form.id" />
           </div>
 
           <!-- Detail -->
@@ -169,10 +169,13 @@
               </p>
             </div>
             <p>
-              <Editor ref="editor" v-model="form.detail" :editable="editorEditable" />
+              <Editor
+                ref="editor"
+                v-model="form.detail"
+                :editable="editorEditable"
+              />
             </p>
           </div>
-
         </div>
       </div>
     </div>

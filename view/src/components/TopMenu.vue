@@ -1,11 +1,11 @@
 <template>
   <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
     <div
-      class="container flex items-center justify-between h-full px-6 mx-auto text-blue-600 dark:text-blue-300"
+      class="container flex items-center justify-between h-full px-6 xl-auto text-blue-600 dark:text-blue-300"
     >
       <!-- Mobile hamburger -->
       <button
-        class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-blue"
+        class="p-1 mr-5 -ml-1 rounded-md xl:hidden focus:outline-none focus:shadow-outline-blue"
         @click="$emit('toggleSideMenu')"
         aria-label="Menu"
       >
@@ -23,7 +23,7 @@
         </svg>
       </button>
       <!-- Search input -->
-      <div class="flex justify-center flex-1 lg:mr-32">
+      <div class="flex justify-center flex-1 xl:mr-32">
         <div class="relative w-full max-w-xl mr-6 focus-within:text-blue-500">
           <div class="absolute inset-y-0 flex items-center pl-2">
             <svg

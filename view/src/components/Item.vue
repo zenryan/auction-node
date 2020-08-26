@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto p-1 xl:p-5">
     <div class="">
       <!-- page header -->
       <div class="flex items-stretch">
@@ -70,15 +70,7 @@
               class="pointer-events-none absolute inset-y-0 right-0 flex
                     items-center px-2 text-gray-700"
             >
-              <svg
-                class="fill-current h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                />
-              </svg>
+              <Down />
             </div>
           </div>
           <div class="relative">
@@ -96,27 +88,13 @@
               class="pointer-events-none absolute inset-y-0 right-0 flex
                     items-center px-2 text-gray-700"
             >
-              <svg
-                class="fill-current h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828
-                        5.757 6.586 4.343 8z"
-                />
-              </svg>
+              <Down />
             </div>
           </div>
         </div>
         <div class="block relative">
           <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
-            <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
-              <path
-                d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32
-                      4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z"
-              ></path>
-            </svg>
+            <Magnifier />
           </span>
           <input
             placeholder="Search"
@@ -162,9 +140,7 @@
             </thead>
             <tbody>
               <tr v-for="item in items" :key="item.id">
-                <td
-                  class="border-dashed border-t border-gray-200 px-3 bg-white"
-                >
+                <td class="px-3 py-2 border-b border-gray-200 bg-white text-sm">
                   <label
                     class="text-teal-500 inline-flex justify-between
                           items-center hover:bg-gray-200 px-2 py-2 rounded-lg
@@ -179,14 +155,16 @@
                     />
                   </label>
                 </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <td
+                  class="px-2 py-2 border-b border-gray-200 bg-white text-sm hover:bg-blue-200"
+                >
                   <router-link :to="showItemLink(item.id)">
                     <div class="flex items-center">
-                      <div class="flex-shrink-0 w-10 h-10">
+                      <div class="shadow-md flex-shrink-0 w-10 h-10">
                         <img
-                          class="w-full h-full rounded-full"
-                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                          alt=""
+                          class="w-full h-full"
+                          :src="item.avatar"
+                          :alt="item.desc"
                         />
                       </div>
                       <div class="ml-3">
@@ -197,17 +175,17 @@
                     </div>
                   </router-link>
                 </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <td class="px-2 py-2 border-b border-gray-200 bg-white text-sm">
                   <p class="text-gray-900 whitespace-no-wrap">
                     {{ item.desc }}
                   </p>
                 </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <td class="px-2 py-2 border-b border-gray-200 bg-white text-sm">
                   <p class="text-gray-900 whitespace-no-wrap">
                     {{ item.price }}
                   </p>
                 </td>
-                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <td class="px-2 py-2 border-b border-gray-200 bg-white text-sm">
                   <Status :type="item.status" />
                 </td>
               </tr>
@@ -245,10 +223,14 @@
 
 <script>
 import Status from '../ui/Status.vue';
+import Down from './svg/Down.vue';
+import Magnifier from './svg/Magnifier.vue';
 
 export default {
   components: {
     Status,
+    Down,
+    Magnifier,
   },
   data() {
     return {

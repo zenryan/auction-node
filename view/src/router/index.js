@@ -81,6 +81,30 @@ const routes = [
         component: () =>
           import(/* webpackChunkName: "auction" */ '../components/EditAuction.vue'),
       },
+      {
+        path: 'bid/:auctionId',
+        name: 'Bid',
+        component: () =>
+          import(/* webpackChunkName: "bid" */ '../components/Bid.vue'),
+        children: [
+          {
+            path: 'mobile',
+            name: 'BidMobile',
+            component: () =>
+              import(/* webpackChunkName: "bid" */ '../components/BidMobile.vue'),
+          },
+          {
+            path: 'web',
+            name: 'BidWeb',
+            component: () =>
+              import(/* webpackChunkName: "bid" */ '../components/BidWeb.vue'),
+          },
+          {
+            path: '',
+            redirect: 'mobile', // default child path
+          },
+        ],
+      },
     ],
   },
 ];

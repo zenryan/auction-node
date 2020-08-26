@@ -1,8 +1,10 @@
 import express from 'express'
 const router = express.Router()
+import assert from 'assert';
 import { Item } from '../entity/items';
 import { Status } from '../entity/enum';
-import assert from 'assert';
+const multer = require('multer');
+const upload = multer({ dest: 'src/public/images/item' });
 
 router.get('/', async function (
   req: express.Request,
@@ -44,7 +46,7 @@ router.get('/:itemId', async function (
   try {
     const { itemId } = req.params;
 
-    const item = await Item.findOne({ id: parseInt(itemId, 0) });
+    const item = await Item.findOne({ id: parseInt(itemId, 10) });
     assert(item !== undefined, 'Item not found');
 
     res.json({
@@ -61,7 +63,42 @@ router.get('/:itemId', async function (
       }
     });
   }
-})
+});
+
+router.post('/avatar', upload.single('picture'), async function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  try {
+    const { file, body } = req;
+
+    if (!file) throw new Error('Please choose file');
+
+    const item = await Item.findOne({ id: parseInt(body.item_id, 10) });
+    assert(item !== undefined, 'Item not found');
+
+    item.avatar = `http://localhost:3000/images/item/${file.filename}`;
+    await item.save();
+
+    const data = {
+      message: "CREATED",
+      body: {
+        item,
+      },
+    };
+    res.status(200).json(data);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      message: "ERROR",
+      error: {
+        code: "ITEM_AVATAR_ERROR",
+        error_message: `item/avatar error`
+      }
+    });
+  }
+});
 
 router.post('/create', async function (
   req: express.Request,
@@ -77,6 +114,7 @@ router.post('/create', async function (
     item.detail = reqItem.detail;
     item.price = reqItem.price;
     item.status = Status.active;
+    item.avatar = reqItem.avatar;
     await item.save();
 
     const data = {

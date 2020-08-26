@@ -6,7 +6,6 @@ import { Entity,
     CreateDateColumn,
     UpdateDateColumn,
     Brackets,
-    QueryBuilder
 } from "typeorm";
 import { Status } from './enum';
 
@@ -27,6 +26,9 @@ export class Item extends BaseEntity {
 
     @Column()
     price: string;
+
+    @Column("varchar", { length: "1024", nullable: true })
+    avatar: string;
 
     @Column('varchar')
     status: Status;

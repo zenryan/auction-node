@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto p-1 xl:p-5">
     <!-- page header -->
     <div class="flex items-stretch">
       <div class="flex-1 text-left left-0 py-2">
@@ -154,7 +154,7 @@
           </thead>
           <tbody>
             <tr v-for="item in auctions" :key="item.id">
-              <td class="border-dashed border-t border-gray-200 px-3 bg-white">
+              <td class="px-3 py-2 border-b border-gray-200 bg-white text-sm">
                 <label
                   class="text-teal-500 inline-flex justify-between items-center
                       hover:bg-gray-200 px-2 py-2 rounded-lg cursor-pointer"
@@ -169,20 +169,20 @@
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <router-link :to="showAuctionLink(item.id)">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0 w-10 h-10">
-                    <img
-                      class="w-full h-full rounded-full"
-                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                      alt=""
-                    />
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 w-10 h-10">
+                      <img
+                        class="w-full h-full rounded-full"
+                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                        alt=""
+                      />
+                    </div>
+                    <div class="ml-3">
+                      <p class="text-gray-900 whitespace-no-wrap">
+                        {{ item.title }}
+                      </p>
+                    </div>
                   </div>
-                  <div class="ml-3">
-                    <p class="text-gray-900 whitespace-no-wrap">
-                      {{ item.title }}
-                    </p>
-                  </div>
-                </div>
                 </router-link>
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">

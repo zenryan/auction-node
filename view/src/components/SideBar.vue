@@ -2,7 +2,7 @@
   <div class="flex h-screen bg-gray-50 dark:bg-gray-900">
     <!-- Desktop sidebar -->
     <aside
-      class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
+      class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 xl:block flex-shrink-0"
     >
       <SideBarItem />
     </aside>
@@ -14,7 +14,7 @@
     ></div>
     <transition name="slide-fade">
       <aside
-        class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
+        class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 xl:hidden"
         v-show="isSideMenuOpen"
         @click="$emit('closeSideMenu')"
         @keydown.escape="$emit('closeSideMenu')"
