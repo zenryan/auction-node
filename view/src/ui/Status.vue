@@ -24,7 +24,6 @@ export default {
   },
   computed: {
     colorStyle() {
-      console.log(this.type);
       const color = this.colors[this.type];
       return `${this.mainClass} ${color}`;
     },

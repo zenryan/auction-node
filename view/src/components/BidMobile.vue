@@ -64,8 +64,7 @@
 
     <div class="flex bottom-0 left-0 bg-gray-200 w-full h-12 item-center">
       <input
-        class="flex-2 m-2 py-2 px-4 text-xs rounded"
-        style="width: 310px;"
+        class="typing-input flex-2 m-2 py-2 px-4 text-xs rounded"
         type="text"
         placeholder="Type message here ..."
         v-model="inputMessage"
@@ -179,3 +178,21 @@ export default {
   },
 };
 </script>
+
+<style>
+.typing-input {
+  width: 310px;
+}
+
+@media (min-width: 768px) {
+  .typing-input {
+    width: 698px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .typing-input {
+    width: 1210px;
+  }
+}
+</style>

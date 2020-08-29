@@ -41,7 +41,6 @@ export default {
     },
 
     onToggleSideMenu() {
-      console.log('togglesitemenu');
       this.isSideMenuOpen = !this.isSideMenuOpen;
     },
   },

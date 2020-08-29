@@ -258,7 +258,11 @@
     </EditorMenuBar>
 
     <div class="p-2">
-      <editor-content id="editor" :editor="editor" class="p-1 w-full prose xl:prose-xl overflow-x-auto">
+      <editor-content
+        id="editor"
+        :editor="editor"
+        class="p-1 w-full prose xl:prose-xl overflow-x-auto"
+      >
       </editor-content>
     </div>
   </div>
@@ -334,7 +338,6 @@ export default {
         ],
         content: this.value,
         onUpdate: ({ getHTML }) => {
-          console.log('onupdate');
           this.html = getHTML();
           this.$emit('input', this.html);
         },
@@ -346,7 +349,6 @@ export default {
 
   methods: {
     setContent(content) {
-      console.log('setContent');
       this.editor.setContent(content);
     },
     /* eslint consistent-return: "off" */
@@ -412,5 +414,4 @@ export default {
 #editor p {
   display: flex;
 }
-
 </style>
