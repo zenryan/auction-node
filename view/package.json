@@ -58,7 +58,15 @@
       "no-param-reassign": "off",
       "implicit-arrow-linebreak": "off",
       "max-len": "off",
-      "operator-linebreak": "off"
+      "operator-linebreak": "off",
+      "comma-dangle": [
+        "error",
+        {
+          "functions": "never",
+          "objects": "only-multiline",
+          "arrays": "only-multiline"
+        }
+      ]
     }
   },
   "browserslist": [

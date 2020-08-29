@@ -7,8 +7,15 @@
       <SideBarListItem link-name="Dashboard" link-to="/app">
         <component :is="homeSvg" />
       </SideBarListItem>
-    </ul>
-    <ul>
+
+      <SideBarListItem link-name="Dashboard2" link-to="/app2">
+        <component :is="homeSvg" />
+      </SideBarListItem>
+
+      <SideBarListItem link-name="Dashboard3" link-to="/app3">
+        <component :is="homeSvg" />
+      </SideBarListItem>
+
       <SideBarListItem link-name="Auction" link-to="/app/auction">
         <component :is="modalSvg" />
       </SideBarListItem>
@@ -17,7 +24,7 @@
         <component :is="itemSvg" />
       </SideBarListItem>
 
-      <SideBarListItem link-name="Bid auction" link-to="/app/bid/auction">
+      <SideBarListItem link-name="Bid auction" link-to="/app/bid/3">
         <component :is="mouseClickSvg" />
       </SideBarListItem>
 

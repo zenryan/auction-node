@@ -20,6 +20,12 @@ const routes = [
       import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
   {
+    path: '/app3',
+    name: 'App3',
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/App3.vue'),
+  },
+  {
     path: '/app2',
     name: 'Dashboard2',
     component: () =>
@@ -29,7 +35,9 @@ const routes = [
         path: '',
         name: 'DashboardMain2',
         component: () =>
-          import(/* webpackChunkName: "dashboard" */ '../components/DashboardMain2.vue'),
+          import(
+            /* webpackChunkName: "dashboard" */ '../components/DashboardMain2.vue'
+          ),
       },
     ],
   },
@@ -43,7 +51,9 @@ const routes = [
         path: '',
         name: 'DashboardMain',
         component: () =>
-          import(/* webpackChunkName: "dashboard" */ '../components/DashboardMain.vue'),
+          import(
+            /* webpackChunkName: "dashboard" */ '../components/DashboardMain.vue'
+          ),
       },
       {
         path: 'item',
@@ -73,13 +83,17 @@ const routes = [
         path: 'auction/create',
         name: 'EditAuction',
         component: () =>
-          import(/* webpackChunkName: "auction" */ '../components/EditAuction.vue'),
+          import(
+            /* webpackChunkName: "auction" */ '../components/EditAuction.vue'
+          ),
       },
       {
         path: 'auction/edit/:auctionId',
         name: 'ShowAuction',
         component: () =>
-          import(/* webpackChunkName: "auction" */ '../components/EditAuction.vue'),
+          import(
+            /* webpackChunkName: "auction" */ '../components/EditAuction.vue'
+          ),
       },
       {
         path: 'bid/:auctionId',
@@ -91,7 +105,9 @@ const routes = [
             path: 'mobile',
             name: 'BidMobile',
             component: () =>
-              import(/* webpackChunkName: "bid" */ '../components/BidMobile.vue'),
+              import(
+                /* webpackChunkName: "bid" */ '../components/BidMobile.vue'
+              ),
           },
           {
             path: 'web',
@@ -106,6 +122,11 @@ const routes = [
         ],
       },
     ],
+  },
+  {
+    path: '*',
+    component: () =>
+      import(/* webpackChunkName: "dashboard" */ '../views/NotFound.vue'),
   },
 ];
 

@@ -1,7 +1,7 @@
 import express from 'express';
 import fs from 'fs';
 import assert from 'assert';
-import { ItemImage } from '../entity/ItemImage';
+import { ItemImage } from '../entity/item_image';
 import { Item } from '../entity/items';
 
 const router = express.Router();

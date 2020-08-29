@@ -665,11 +665,5 @@
 </template>
 
 <script>
-export default {
-  components: {},
-  data() {
-    return {};
-  },
-  methods: {},
-};
+export default {};
 </script>

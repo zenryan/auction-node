@@ -1,244 +1,181 @@
 <template>
   <div class="container mx-auto">
-    <!-- page header -->
-    <div class="flex items-stretch">
-      <h2 class="text-l font-semibold leading-tight py-2">
-        Bid for auction
-      </h2>
-    </div>
+    <AuctionCarousel :auction="auction" />
 
-    <!-- carousel -->
-
-    <div class="carousel relative container mx-auto" style="max-width:1600px;">
-      <div class="carousel-inner relative overflow-hidden w-full">
-        <!--Slide 1-->
-        <input
-          class="carousel-open"
-          type="radio"
-          id="carousel-1"
-          name="carousel"
-          aria-hidden="true"
-          hidden=""
-          checked="checked"
-        />
-        <div class="carousel-item absolute opacity-0" style="height:50vh;">
-          <div
-            class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right"
-            style="background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');"
-          >
-            <div class="container mx-auto">
-              <div
-                class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide"
-              >
-                <p class="text-black text-2xl my-4">
-                  Stripy Zig Zag Jigsaw Pillow and Duvet Set
-                </p>
-                <a
-                  class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black"
-                  href="#"
-                  >view product</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <label
-          for="carousel-3"
-          class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 left-0 my-auto"
-          >‹</label
-        >
-        <label
-          for="carousel-2"
-          class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 right-0 my-auto"
-          >›</label
-        >
-        <!--Slide 2-->
-        <input
-          class="carousel-open"
-          type="radio"
-          id="carousel-2"
-          name="carousel"
-          aria-hidden="true"
-          hidden=""
-        />
-        <div
-          class="carousel-item absolute opacity-0 bg-cover bg-right"
-          style="height:50vh;"
-        >
-          <div
-            class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right"
-            style="background-image: url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjM0MTM2fQ&auto=format&fit=crop&w=1600&q=80');"
-          >
-            <div class="container mx-auto">
-              <div
-                class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide"
-              >
-                <p class="text-black text-2xl my-4">Real Bamboo Wall Clock</p>
-                <a
-                  class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black"
-                  href="#"
-                  >view product</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <label
-          for="carousel-1"
-          class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 left-0 my-auto"
-          >‹</label
-        >
-        <label
-          for="carousel-3"
-          class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 right-0 my-auto"
-          >›</label
-        >
-
-        <!--Slide 3-->
-        <input
-          class="carousel-open"
-          type="radio"
-          id="carousel-3"
-          name="carousel"
-          aria-hidden="true"
-          hidden=""
-        />
-        <div class="carousel-item absolute opacity-0" style="height:50vh;">
-          <div
-            class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-bottom"
-            style="background-image: url('https://images.unsplash.com/photo-1519327232521-1ea2c736d34d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');"
-          >
-            <div class="container mx-auto">
-              <div
-                class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide"
-              >
-                <p class="text-black text-2xl my-4">
-                  Brown and blue hardbound book
-                </p>
-                <a
-                  class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black"
-                  href="#"
-                  >view product</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <label
-          for="carousel-2"
-          class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 left-0 my-auto"
-          >‹</label
-        >
-        <label
-          for="carousel-1"
-          class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 right-0 my-auto"
-          >›</label
-        >
-
-        <!-- Add additional indicators for each slide-->
-        <ol class="carousel-indicators">
-          <li class="inline-block mr-3">
-            <label
-              for="carousel-1"
-              class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900"
-              >•</label
-            >
-          </li>
-          <li class="inline-block mr-3">
-            <label
-              for="carousel-2"
-              class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900"
-              >•</label
-            >
-          </li>
-          <li class="inline-block mr-3">
-            <label
-              for="carousel-3"
-              class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900"
-              >•</label
-            >
-          </li>
-        </ol>
+    <!-- page body -->
+    <div class="flex items-strecth p-2 bg-blue-300">
+      <div class="flex-1 text-left">
+        <p>{{ auction.title }}</p>
+      </div>
+      <div class="flex-1 text-right">
+        <router-link to="/app/bid/1/web">
+          <button class="px-1">
+            <Window />
+          </button>
+        </router-link>
+        <template v-if="expandDetail">
+          <button @click="setExpandDetail(false)">
+            <Up />
+          </button>
+        </template>
+        <template v-else>
+          <button @click="setExpandDetail(true)">
+            <Down />
+          </button>
+        </template>
       </div>
     </div>
 
-    <!-- page body -->
-    <div class="container mx-auto bg-gray-200">
-      <label>Auction details</label>
+    <!-- editor -->
+    <div
+      v-if="expandDetail"
+      class="shadow-xl overflow-y-auto overflow-x-auto p-2 bg-blue-300"
+      sytle="max-height:  50vh"
+    >
+      <Editor
+        class="bg-white rounded"
+        ref="editor"
+        v-model="auction.detail"
+        v-bind:editable="false"
+      />
     </div>
 
-    <div class="absolute bottom-0 left-0 bg-gray-200 w-full">
-      Typing here
+    <!-- messages -->
+    <div
+      class="shadow-xl overflow-y-auto bg-gray-200"
+      style="max-height: 500px;"
+    >
+      <div class="text-xs">
+        <div
+          :class="msg.own ? 'text-right' : false"
+          class="p-2"
+          v-for="msg in messages"
+          v-bind:key="msg.id"
+        >
+          <p class="">
+            <label class="bg-gray-100 rounded-full py-1 px-2 text-bold text-xs">
+              {{ msg.name }}
+            </label>
+          </p>
+          <p class="p-2">{{ msg.message }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex bottom-0 left-0 bg-gray-200 w-full h-12 item-center">
+      <input
+        class="flex-2 m-2 py-2 px-4 text-xs rounded"
+        style="width: 310px;"
+        type="text"
+        placeholder="Type message here ..."
+        v-model="inputMessage"
+      />
+      <div
+        class="flex-1 self-strecth rounded ml-2 hover:bg-blue-100text-gray-700 py-3"
+        @click="sendMessage()"
+      >
+        <Send />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import Down from './svg/Down.vue';
+import Up from './svg/Up.vue';
+import Window from './svg/Window.vue';
+import Send from './svg/Send.vue';
+import Editor from '../ui/Editor.vue';
+import AuctionCarousel from './AuctionCarousel.vue';
+
+export default {
+  components: {
+    Down,
+    Up,
+    Window,
+    Editor,
+    Send,
+    AuctionCarousel,
+  },
+
+  data() {
+    return {
+      user: null,
+      expandDetail: false,
+      auction: {
+        title: '',
+        desc: '',
+        detail: '',
+        startdate: '',
+        enddate: '',
+      },
+      inputMessage: '',
+      messages: [
+        {
+          id: 1,
+          name: 'userA',
+          message:
+            'nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!',
+          own: true,
+        },
+      ],
+    };
+  },
+
+  async mounted() {
+    this.auctionId = this.$route.params.auctionId;
+    this.fetchMessages(this.auctionId);
+    if (this.auctionId) {
+      await this.fetchAuction(this.auctionId);
+      if (this.$refs.editor) this.$refs.editor.setContent(this.auction.detail);
+    }
+    // TODO: hard coded, refactor when login is implemented
+    this.user = JSON.parse(localStorage.getItem('user'));
+  },
+
+  methods: {
+    setExpandDetail(val) {
+      this.expandDetail = val;
+    },
+
+    async fetchAuction(auctionId) {
+      try {
+        const url = `/auction/${auctionId}`;
+        const response = await this.$http.get(url);
+        if (response.data.auction) {
+          this.auction = response.data.auction;
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    async fetchMessages(auctionId) {
+      try {
+        const url = `/auction/${auctionId}/messages`;
+        const response = await this.$http.get(url);
+        this.messages = response.data.messages;
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    async sendMessage() {
+      try {
+        if (!this.inputMessage) return;
+        const url = `/auction/${this.auctionId}/message`;
+        const body = {
+          user_id: this.user.id,
+          message: this.inputMessage,
+        };
+        const response = await this.$http.post(url, body);
+        if (response.data.body.message) {
+          this.messages.push(response.data.body.message);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  },
+};
 </script>
-
-<style>
-.worksans {
-  font-family: 'Work Sans', sans-serif;
-}
-
-#menu-toggle:checked + #menu {
-  display: block;
-}
-
-.hover\:grow {
-  transition: all 0.3s;
-  transform: scale(1);
-}
-
-.hover\:grow:hover {
-  transform: scale(1.02);
-}
-
-.carousel-open:checked + .carousel-item {
-  position: static;
-  opacity: 100;
-}
-
-.carousel-item {
-  -webkit-transition: opacity 0.6s ease-out;
-  transition: opacity 0.6s ease-out;
-}
-
-#carousel-1:checked ~ .control-1,
-#carousel-2:checked ~ .control-2,
-#carousel-3:checked ~ .control-3 {
-  display: block;
-}
-
-.carousel-indicators {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  bottom: 2%;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 10;
-}
-
-#carousel-1:checked
-  ~ .control-1
-  ~ .carousel-indicators
-  li:nth-child(1)
-  .carousel-bullet,
-#carousel-2:checked
-  ~ .control-2
-  ~ .carousel-indicators
-  li:nth-child(2)
-  .carousel-bullet,
-#carousel-3:checked
-  ~ .control-3
-  ~ .carousel-indicators
-  li:nth-child(3)
-  .carousel-bullet {
-  color: #000;
-  /*Set to match the Tailwind colour you want the active one to be */
-}
-</style>

@@ -16,23 +16,25 @@
       </div>
     </div>
 
-    <button
+    <!-- <button
       class="bg-transparent hover:bg-blue-500 text-blue-700 mx-auto
             font-semibold hover:text-white py-2 px-4 border border-blue-500
             hover:border-transparent rounded"
       @click="onLogin"
     >
       Login
-    </button>
+    </button> -->
+    <Login />
   </div>
 </template>
 
 <script>
-import HomeNav from '@/components/HomeNav.vue';
+import HomeNav from '../components/HomeNav.vue';
+import Login from '../components/Login.vue';
 
 export default {
   name: 'Home',
-  components: { HomeNav },
+  components: { HomeNav, Login },
   methods: {
     async onLogin() {
       this.$router.push('/app');

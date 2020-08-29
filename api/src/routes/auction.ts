@@ -5,7 +5,9 @@ const Not = require('you-are-not');
 const not = Not.create();
 import { Auction } from '../entity/auctions';
 import { Item } from '../entity/items';
+import { User } from '../entity/users';
 import { AuctionItem } from '../entity/auction_items';
+import { AuctionMessage } from '../entity/auction_message';
 import { Status } from '../entity/enum';
 import { createQueryBuilder } from 'typeorm';
 
@@ -46,8 +48,72 @@ router.get('/:auctionId', async function (
     res.status(500).json({
       message: "ERROR",
       error: {
-        code: "AUCTION_CREATE_ERROR",
-        error_message: `auction/create error`
+        code: "AUCTION_GET_ERROR",
+        error_message: `auction/get error`
+      }
+    });
+  }
+});
+
+router.get('/:auctionId/messages', async function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  try {
+    const { auctionId } = req.params;
+
+    const messages = await AuctionMessage.find({ auction_id: parseInt(auctionId, 10) });
+
+    res.send({
+      message: 'GET',
+      auctionId,
+      messages
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      message: "ERROR",
+      error: {
+        code: "AUCTION_GET_MESSAGE_ERROR",
+        error_message: `auction/get message error`
+      }
+    });
+  }
+});
+
+router.post('/:auctionId/message', async function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  try {
+    const { auctionId } = req.params;
+    const { body } = req;
+
+    const message = new AuctionMessage();
+    // TODO: change this to get from jwt
+    const user = await User.findOneOrFail(body.user_id);
+    message.auction_id = parseInt(auctionId, 10);
+    message.message = body.message;
+    message.user_id = body.user_id;
+    message.name = user.name;
+    message.save();
+
+    res.send({
+      message: 'CREATED',
+      body: {
+        auctionId,
+        message: message,
+      }
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      message: "ERROR",
+      error: {
+        code: "AUCTION_GET_MESSAGE_ERROR",
+        error_message: `auction/get message error`
       }
     });
   }
@@ -105,7 +171,7 @@ router.get('/:auctionId/item', async function (
 
     const data = {
       message: "LISTED",
-      items: result.map((i) =>{
+      items: result.map((i) => {
         return {
           id: i.Item_id,
           title: i.Item_title,

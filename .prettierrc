@@ -1,9 +1,18 @@
 {
-  "tabWidth": 2,
-  "useTabs": false,
-  "printWidth": 80,
+  "overrides": [
+    {
+      "files": ["view/**/*.vue"],
+      "options": {
+        "tabWidth": 2,
+        "useTabs": false,
+        "printWidth": 80,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "arrowParens": "always",
+        "parser": "vue"
+      }
+    }
+  ],
   "singleQuote": true,
-  "trailingComma": "es5",
-  "arrowParens": "always",
-  "parser": "vue"
+  "trailingComma": "es5"
 }

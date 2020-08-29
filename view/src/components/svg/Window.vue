@@ -7,6 +7,7 @@
   >
     <path fill="none" d="M0 0h24v24H0z" />
     <path
-      d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z"
-    /></svg
-></template>
+      d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm17 7H4v9h16v-9zM5 6v2h2V6H5zm4 0v2h2V6H9z"
+    />
+  </svg>
+</template>

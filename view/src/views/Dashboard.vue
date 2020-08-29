@@ -11,7 +11,7 @@
 
       <div class="flex flex-col flex-1 w-full">
         <TopMenu v-on:toggleSideMenu="onToggleSideMenu" />
-        <main class="h-full overflow-y-auto">
+        <main class="gradient h-full overflow-y-auto">
           <router-view></router-view>
         </main>
       </div>
@@ -47,3 +47,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.gradient {
+  background-image: linear-gradient(135deg, #684ca0 35%, #1c4ca0 100%);
+}
+</style>
