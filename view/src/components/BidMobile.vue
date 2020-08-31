@@ -1,6 +1,9 @@
 <template>
   <div class="container mx-auto">
-    <AuctionCarousel :auction="auction" />
+    <AuctionCarousel
+      :auction="auction"
+      @auctionStatusChanged="setAuctionStatus"
+    />
 
     <!-- page body -->
     <div class="flex items-strecth p-2 bg-blue-300">
@@ -41,41 +44,7 @@
     </div>
 
     <!-- messages -->
-    <div
-      class="shadow-xl overflow-y-auto bg-gray-200"
-      style="max-height: 500px;"
-    >
-      <div class="text-xs">
-        <div
-          :class="msg.own ? 'text-right' : false"
-          class="p-2"
-          v-for="msg in messages"
-          v-bind:key="msg.id"
-        >
-          <p class="">
-            <label class="bg-gray-100 rounded-full py-1 px-2 text-bold text-xs">
-              {{ msg.name }}
-            </label>
-          </p>
-          <p class="p-2">{{ msg.message }}</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex bottom-0 left-0 bg-gray-200 w-full h-12 item-center">
-      <input
-        class="typing-input flex-2 m-2 py-2 px-4 text-xs rounded"
-        type="text"
-        placeholder="Type message here ..."
-        v-model="inputMessage"
-      />
-      <div
-        class="flex-1 self-strecth rounded ml-2 hover:bg-blue-100text-gray-700 py-3"
-        @click="sendMessage()"
-      >
-        <Send />
-      </div>
-    </div>
+    <Messages v-if="auctionStatus.status === 'STARTED'" :auction="auction" />
   </div>
 </template>
 
@@ -83,9 +52,9 @@
 import Down from './svg/Down.vue';
 import Up from './svg/Up.vue';
 import Window from './svg/Window.vue';
-import Send from './svg/Send.vue';
 import Editor from '../ui/Editor.vue';
 import AuctionCarousel from './AuctionCarousel.vue';
+import Messages from './Messages.vue';
 
 export default {
   components: {
@@ -93,8 +62,8 @@ export default {
     Up,
     Window,
     Editor,
-    Send,
     AuctionCarousel,
+    Messages,
   },
 
   data() {
@@ -108,22 +77,22 @@ export default {
         startdate: '',
         enddate: '',
       },
-      inputMessage: '',
-      messages: [
-        {
-          id: 1,
-          name: 'userA',
-          message:
-            'nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!nice !!!!',
-          own: true,
-        },
-      ],
+      auctionStatus: {
+        status: '',
+        msg: '',
+        timer: '',
+      },
     };
+  },
+
+  computed: {
+    showMessages() {
+      return ['STARTED', 'STARTING'].indexOf(this.auctionStatus.status) >= 0;
+    },
   },
 
   async mounted() {
     this.auctionId = this.$route.params.auctionId;
-    this.fetchMessages(this.auctionId);
     if (this.auctionId) {
       await this.fetchAuction(this.auctionId);
       if (this.$refs.editor) this.$refs.editor.setContent(this.auction.detail);
@@ -137,6 +106,10 @@ export default {
       this.expandDetail = val;
     },
 
+    setAuctionStatus(auctionStatus) {
+      this.auctionStatus = auctionStatus;
+    },
+
     async fetchAuction(auctionId) {
       try {
         const url = `/auction/${auctionId}`;
@@ -148,51 +121,6 @@ export default {
         console.error(e);
       }
     },
-
-    async fetchMessages(auctionId) {
-      try {
-        const url = `/auction/${auctionId}/messages`;
-        const response = await this.$http.get(url);
-        this.messages = response.data.messages;
-      } catch (e) {
-        console.error(e);
-      }
-    },
-
-    async sendMessage() {
-      try {
-        if (!this.inputMessage) return;
-        const url = `/auction/${this.auctionId}/message`;
-        const body = {
-          user_id: this.user.id,
-          message: this.inputMessage,
-        };
-        const response = await this.$http.post(url, body);
-        if (response.data.body.message) {
-          this.messages.push(response.data.body.message);
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    },
   },
 };
 </script>
-
-<style>
-.typing-input {
-  width: 310px;
-}
-
-@media (min-width: 768px) {
-  .typing-input {
-    width: 698px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .typing-input {
-    width: 1210px;
-  }
-}
-</style>

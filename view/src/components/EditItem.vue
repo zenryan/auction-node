@@ -3,22 +3,14 @@
     <!-- page header -->
     <div class="flex items-stretch">
       <div class="flex-1 text-left left-0 py-2">
-        <h2 class="text-2xl font-semibold leading-tight py-2">
+        <h2 class="text-2xl font-semibold leading-tight py-2 text-orange-400">
           Manage item
         </h2>
       </div>
       <div class="self-center flex-1 text-center py-2"></div>
       <div class="flex-1 text-gray-700 text-center py-2">
         <div class="float-right">
-          <button
-            class="bg-transparent flex hover:bg-blue-500 text-blue-700 font-semibold
-                    hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent
-                    rounded"
-            @click="onClickSave"
-          >
-            <Plus class="mr-2" />
-            <span>Save item</span>
-          </button>
+          <SaveButton text="Save item" @click="onClickSave" />
         </div>
       </div>
     </div>
@@ -161,14 +153,14 @@
 
 <script>
 import Editor from '../ui/Editor.vue';
-import Plus from './svg/Plus.vue';
 import UploadInput from './UploadInput.vue';
+import SaveButton from './SaveButton.vue';
 
 export default {
   components: {
     Editor,
-    Plus,
     UploadInput,
+    SaveButton,
   },
 
   computed: {

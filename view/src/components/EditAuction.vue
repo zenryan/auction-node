@@ -4,24 +4,14 @@
       <!-- page header -->
       <div class="flex items-stretch">
         <div class="flex-1 text-left left-0 py-2">
-          <h2 class="text-2xl font-semibold leading-tight py-2">
+          <h2 class="text-2xl font-semibold leading-tight py-2 text-orange-400">
             Manage auction
           </h2>
         </div>
         <div class="self-center flex-1 text-center py-2"></div>
         <div class="flex-1 text-gray-700 text-center py-2">
           <div class="float-right">
-            <button
-              class="bg-transparent flex hover:bg-blue-500 text-blue-700
-                                  font-semibold hover:text-white py-2 px-4 border border-blue-500
-                                  hover:border-transparent rounded"
-              v-on:click="onClickSave"
-            >
-              <svg class="h-5 w-5 fill-current mr-2" viewBox="0 0 24 24">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
-              </svg>
-              <span>Save auction</span>
-            </button>
+            <SaveButton @click="onClickSave" text="Save auction" />
           </div>
         </div>
       </div>
@@ -187,12 +177,14 @@ import moment from 'moment';
 import Datetime from '../ui/Datetime.vue';
 import SelectAuctionItems from './SelectAuctionItems.vue';
 import Editor from '../ui/Editor.vue';
+import SaveButton from './SaveButton.vue';
 
 export default {
   components: {
     Datetime,
     SelectAuctionItems,
     Editor,
+    SaveButton,
   },
   data() {
     return {

@@ -1,4 +1,5 @@
 {
+  // prettier-ignore
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
@@ -66,7 +67,5 @@
     "skipLibCheck": true,                     /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
-  "include": [
-    "src",
-  ]
+  "include": ["src"]
 }

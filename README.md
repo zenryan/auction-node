@@ -7,7 +7,11 @@ https://github.com/typeorm/typeorm/blob/master/docs/using-cli.md#installing-cli
 
 ngrok http --host-header=rewrite 8081
 
-### Check out
+### Reference
+
+https://github.com/MetinSeylan/Vue-Socket.io
+
+### Check out for further improvement
 
 Prob better than Tiptap
 https://ckeditor.com/

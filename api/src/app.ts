@@ -9,21 +9,11 @@ import logger = require('morgan')
 // @ts-ignore
 import Magic = require('express-routemagic')
 import "reflect-metadata";
-import { createConnection } from "typeorm";
 import cors from 'cors';
 // @ts-ignore
 import config = require('./config');
 
 const app: express.Application = express();
-
-// connecting to database
-createConnection(config.database).then(connection => {
-  console.log(`Connected to DB ${config.database.host}:${config.database.port}`);
-}).catch(error => {
-  console.log(`Error connecting to DB ${config.database.host}:${config.database.port}`);
-  console.log(error)
-  process.exit(1);
-});
 
 // view engine setup
 app.set('views', join(__dirname, 'views'))

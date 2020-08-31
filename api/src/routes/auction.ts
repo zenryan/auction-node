@@ -63,7 +63,9 @@ router.get('/:auctionId/messages', async function (
   try {
     const { auctionId } = req.params;
 
-    const messages = await AuctionMessage.find({ auction_id: parseInt(auctionId, 10) });
+    const messages = await AuctionMessage.getMessages(
+      parseInt(auctionId, 10)
+    );
 
     res.send({
       message: 'GET',

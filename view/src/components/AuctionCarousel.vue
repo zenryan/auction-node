@@ -208,13 +208,6 @@ export default {
       const startdate = new Date(this.auction.startdate);
       const now = new Date();
       const enddate = new Date(this.auction.enddate);
-      console.log(
-        'here',
-        startdate.toISOString(),
-        now.toISOString(),
-        enddate.toISOString()
-      );
-
       if (startdate < now && now < enddate) {
         status.status = 'STARTING';
         status.msg = 'Auction starts in';
@@ -224,7 +217,7 @@ export default {
         status.msg = 'Auction ends in';
         status.timer = this.auction.enddate;
       }
-
+      this.$emit('auctionStatusChanged', status);
       return status;
     },
 

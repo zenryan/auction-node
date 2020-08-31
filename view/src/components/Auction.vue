@@ -3,7 +3,7 @@
     <!-- page header -->
     <div class="flex items-stretch">
       <div class="flex-1 text-left left-0 py-2">
-        <h2 class="text-2xl font-semibold leading-tight py-2">
+        <h2 class="text-2xl font-semibold leading-tight py-2 text-orange-400">
           Manage auction
         </h2>
       </div>

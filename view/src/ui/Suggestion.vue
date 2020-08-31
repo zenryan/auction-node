@@ -88,7 +88,7 @@ export default {
     if (this.extendedOptions.debounce !== 0) {
       this.onQueryChanged = debounce(
         this.onQueryChanged,
-        this.extendedOptions.debounce,
+        this.extendedOptions.debounce
       );
     }
   },
@@ -209,9 +209,9 @@ export default {
       const result = this.onInputChange(value);
       this.items = [];
       if (
-        typeof result === 'undefined'
-        || typeof result === 'boolean'
-        || result === null
+        typeof result === 'undefined' ||
+        typeof result === 'boolean' ||
+        result === null
       ) {
         return;
       }
