@@ -6,11 +6,10 @@ import SocketIO from 'socket.io-client';
 
 import App from './App.vue';
 import router from './router';
-// You need a specific loader for CSS files
+import './assets/styles/index.css';
 
-// TODO: no production ready
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000/',
+  baseURL: process.env.VUE_APP_API_HOST,
   timeout: 1000,
   mode: 'cors',
 });
@@ -23,7 +22,7 @@ Vue.prototype.$http = axiosInstance;
 Vue.use(
   new VueSocketIO({
     debug: true,
-    connection: SocketIO('http://localhost:3000'),
+    connection: SocketIO(process.env.VUE_APP_API_HOST),
   })
 );
 

@@ -16,7 +16,7 @@
             <div class="col-span-12 lg:col-span-9">
               <router-view></router-view>
             </div>
-            <div class="col-span-12 lg:col-span-3 h-full">
+            <div class="col-span-12 lg:col-span-3 h-full p-2 md:p-4">
               <Event />
             </div>
           </div>

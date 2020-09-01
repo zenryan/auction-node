@@ -1,12 +1,12 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-const plugin = require('tailwindcss/plugin')
-const Color = require('color')
+const defaultTheme = require('tailwindcss/defaultTheme');
+const plugin = require('tailwindcss/plugin');
+const Color = require('color');
 
 module.exports = {
-  purge: ['public/**/*.html'],
+  purge: ['public/**/*.html', './src/**/*.vue'],
   theme: {
     themeVariants: ['dark'],
-    customForms: (theme) => ({
+    customForms: theme => ({
       default: {
         'input, textarea': {
           '&::placeholder': {
@@ -202,18 +202,21 @@ module.exports = {
     require('@tailwindcss/custom-forms'),
     require('@tailwindcss/typography'),
     plugin(({ addUtilities, e, theme, variants }) => {
-      const newUtilities = {}
+      const newUtilities = {};
       Object.entries(theme('colors')).map(([name, value]) => {
-        if (name === 'transparent' || name === 'current') return
-        const color = value[300] ? value[300] : value
-        const hsla = Color(color).alpha(0.45).hsl().string()
+        if (name === 'transparent' || name === 'current') return;
+        const color = value[300] ? value[300] : value;
+        const hsla = Color(color)
+          .alpha(0.45)
+          .hsl()
+          .string();
 
         newUtilities[`.shadow-outline-${name}`] = {
           'box-shadow': `0 0 0 3px ${hsla}`,
-        }
-      })
+        };
+      });
 
-      addUtilities(newUtilities, variants('boxShadow'))
+      addUtilities(newUtilities, variants('boxShadow'));
     }),
   ],
-}
+};

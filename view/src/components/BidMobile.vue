@@ -11,8 +11,11 @@
         <p>{{ auction.title }}</p>
       </div>
       <div class="flex-1 text-right">
+        <button class="px-2" @click="toggleUser(true)">
+          <TeamFill height="24" />
+        </button>
         <router-link to="/app/bid/1/web">
-          <button class="px-1">
+          <button class="px-2">
             <Window />
           </button>
         </router-link>
@@ -48,7 +51,8 @@
       v-if="auctionStatus.status === 'STARTED'"
       :auction="auction"
       :user="user"
-    />
+    >
+    </Messages>
   </div>
 </template>
 
@@ -56,6 +60,7 @@
 import Down from './svg/Down.vue';
 import Up from './svg/Up.vue';
 import Window from './svg/Window.vue';
+import TeamFill from './svg/TeamFill.vue';
 import Editor from '../ui/Editor.vue';
 import AuctionCarousel from './AuctionCarousel.vue';
 import Messages from './Messages.vue';
@@ -65,6 +70,7 @@ export default {
     Down,
     Up,
     Window,
+    TeamFill,
     Editor,
     AuctionCarousel,
     Messages,
@@ -124,6 +130,10 @@ export default {
       } catch (e) {
         console.error(e);
       }
+    },
+
+    toggleUser() {
+      console.log('toggleUser');
     },
   },
 };

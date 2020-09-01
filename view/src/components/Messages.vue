@@ -1,26 +1,23 @@
 <template>
-  <div>
-    <div
-      class="shadow-xl overflow-y-auto bg-gray-200"
-      style="max-height: 500px;"
-      ref="messageContainer"
-    >
-      <div class="text-xs">
-        <div
-          :class="msg.own ? 'text-right' : false"
-          v-for="msg in messages"
-          v-bind:key="msg.id"
-        >
-          <template v-if="!msg.user_id">
-            <SystemMessage :message="msg.message" />
-          </template>
-          <template v-else>
-            <UserMessage :name="msg.name" :message="msg.message" />
-          </template>
-        </div>
+  <div
+    class="shadow-xl overflow-y-auto bg-gray-200 relative"
+    style="max-height: 500px;"
+    ref="messageContainer"
+  >
+    <div class="text-xs">
+      <div
+        :class="msg.own ? 'text-right' : false"
+        v-for="msg in messages"
+        v-bind:key="msg.id"
+      >
+        <template v-if="!msg.user_id">
+          <SystemMessage :message="msg.message" />
+        </template>
+        <template v-else>
+          <UserMessage :name="msg.name" :message="msg.message" />
+        </template>
       </div>
     </div>
-
     <div class="flex bottom-0 left-0 bg-gray-200 w-full h-12 item-center">
       <input
         class="typing-input flex-2 m-2 py-2 px-4 text-xs rounded"
@@ -36,6 +33,7 @@
         <Send />
       </div>
     </div>
+    <OnlineUsers :auction="auction" :user="user" />
   </div>
 </template>
 
@@ -43,6 +41,7 @@
 import UserMessage from './UserMessage.vue';
 import SystemMessage from './SystemMessage.vue';
 import Send from './svg/Send.vue';
+import OnlineUsers from './OnlineUsers.vue';
 
 export default {
   props: {
@@ -63,6 +62,7 @@ export default {
     UserMessage,
     SystemMessage,
     Send,
+    OnlineUsers,
   },
   data() {
     return {

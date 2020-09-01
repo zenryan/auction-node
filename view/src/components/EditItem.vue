@@ -166,7 +166,7 @@ export default {
   computed: {
     itemImage() {
       return (
-        this.form.avatar || 'http://localhost:3000/images/item-default.png'
+        this.form.avatar || `${process.env.API_HOST}/images/item-default.png`
       );
     },
   },
