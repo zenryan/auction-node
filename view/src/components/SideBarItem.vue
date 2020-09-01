@@ -8,14 +8,6 @@
         <component :is="homeSvg" />
       </SideBarListItem>
 
-      <SideBarListItem link-name="Dashboard2" link-to="/app2">
-        <component :is="homeSvg" />
-      </SideBarListItem>
-
-      <SideBarListItem link-name="Dashboard3" link-to="/app3">
-        <component :is="homeSvg" />
-      </SideBarListItem>
-
       <SideBarListItem link-name="Auction" link-to="/app/auction">
         <component :is="modalSvg" />
       </SideBarListItem>
@@ -28,7 +20,7 @@
         <component :is="mouseClickSvg" />
       </SideBarListItem>
 
-      <SideBarListItem link-name="Bid History" link-to="/app/bid/history">
+      <SideBarListItem link-name="Bid History" link-to="/app/history">
         <component :is="threeLineSvg" />
       </SideBarListItem>
 

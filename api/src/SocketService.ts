@@ -24,7 +24,7 @@ module.exports = function (server: any) {
 
     socket.on('roomJoin', (body: any) => {
       console.log('roomJoin', body);
-      const { uuid, user } = body;
+      const { uuid } = body;
 
       socket.join(`auction_${uuid}`, async () => {
 

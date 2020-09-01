@@ -208,15 +208,17 @@ export default {
       const startdate = new Date(this.auction.startdate);
       const now = new Date();
       const enddate = new Date(this.auction.enddate);
-      if (startdate < now && now < enddate) {
+
+      if (startdate > now && now < enddate) {
         status.status = 'STARTING';
         status.msg = 'Auction starts in';
         status.timer = this.auction.startdate;
-      } else if (startdate > now && now < enddate) {
+      } else if (startdate < now && now < enddate) {
         status.status = 'STARTED';
         status.msg = 'Auction ends in';
         status.timer = this.auction.enddate;
       }
+
       this.$emit('auctionStatusChanged', status);
       return status;
     },

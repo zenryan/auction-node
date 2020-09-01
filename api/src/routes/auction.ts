@@ -129,6 +129,7 @@ router.post('/create', async function (
   try {
     const { auction: reqAuction } = req.body;
     const auction = new Auction();
+
     if (reqAuction.id) auction.id = reqAuction.id;
     auction.title = reqAuction.title;
     auction.desc = reqAuction.desc;
@@ -224,6 +225,43 @@ router.post('/:auctionId/item/:itemId', async function (
     const data = {
       message: "CREATED",
       item
+    };
+    res.status(200).json(data);
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      message: "ERROR",
+      error: {
+        code: "AUCTION_ITEM_CREATE_ERROR",
+        error_message: `Adding auctionItem error`
+      }
+    });
+  }
+});
+
+router.delete('/:auctionId/item/:itemId', async function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  try {
+    const { auctionId, itemId } = req.params;
+
+    const item = await Item.findOne({ id: parseInt(itemId, 10) });
+    assert(item !== undefined, 'Error: Item not found');
+
+    const result = await AuctionItem.deleteByAuctionAndItemId(
+      parseInt(auctionId, 10),
+      parseInt(itemId, 10)
+    );
+
+    item.status = Status.active;
+    item.save();
+
+    const data = {
+      message: "DELETED",
+      affected: result.affected,
     };
     res.status(200).json(data);
 

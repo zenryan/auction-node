@@ -96,16 +96,17 @@
                 </p>
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <span
+                <button
                   class="relative inline-block px-3 py-1 font-semibold text-green-900
                       leading-tight"
+                  @click="removeItem(item.id)"
                 >
                   <span
                     aria-hidden
-                    class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                    class="absolute inset-0 bg-green-200 opacity-50 rounded"
                   ></span>
-                  <span class="relative">Active</span>
-                </span>
+                  <span class="relative">Remove</span>
+                </button>
               </td>
             </tr>
           </tbody>
@@ -145,7 +146,7 @@ export default {
   },
   watch: {
     async auctionId(val) {
-      this.items = (!val) ? [] : await this.fetchItems(val);
+      this.items = !val ? [] : await this.fetchItems(val);
     },
   },
   methods: {
@@ -214,6 +215,25 @@ export default {
         rows.splice(index, 1);
       } else {
         rows.push(id);
+      }
+    },
+
+    removeItem(itemId) {
+      try {
+        let i;
+        const url = `/auction/${this.auctionId}/item/${itemId}`;
+        const result = this.$http.delete(url);
+
+        for (i = 0; i < this.items.length; i += 1) {
+          if (this.items[i].id === itemId) {
+            this.items.splice(i, 1);
+            break;
+          }
+        }
+
+        console.log(result);
+      } catch (err) {
+        console.log(err);
       }
     },
   },

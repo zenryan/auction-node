@@ -10,16 +10,7 @@
       <div class="self-center flex-1 text-center py-2"></div>
       <div class="flex-1 text-gray-700 text-center py-2">
         <div class="float-right">
-          <button
-            class="bg-transparent flex hover:bg-blue-500 text-blue-700 font-semibold
-                hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-            v-on:click="onClickNew"
-          >
-            <svg class="h-5 w-5 fill-current mr-2" viewBox="0 0 24 24">
-              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
-            </svg>
-            <span>New Auction</span>
-          </button>
+          <SaveButton @click="onClickNew" text="New auction" />
         </div>
       </div>
     </div>
@@ -254,9 +245,12 @@
 // https://vue-cool-lightbox.lucaspulliese.com/
 // Upload image for tiptap
 // https://medium.com/@kailaash/copy-or-drag-and-drop-multiple-images-to-tiptap-editor-for-vue-3bdce8bf7e38
+import SaveButton from './SaveButton.vue';
 
 export default {
-  components: {},
+  components: {
+    SaveButton,
+  },
   data() {
     return {
       selectedRows: [],

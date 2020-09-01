@@ -173,7 +173,6 @@
 </template>
 
 <script>
-import moment from 'moment';
 import Datetime from '../ui/Datetime.vue';
 import SelectAuctionItems from './SelectAuctionItems.vue';
 import Editor from '../ui/Editor.vue';
@@ -190,12 +189,12 @@ export default {
     return {
       error: null,
       form: {
-        title: 'Auction',
-        desc: 'Auction description',
-        startprice: 1,
-        detail: 'default',
-        startdate: moment().toISOString(),
-        enddate: moment().toISOString(),
+        title: '',
+        desc: '',
+        startprice: 0,
+        detail: '',
+        startdate: '',
+        enddate: '',
       },
       editorEditable: true,
       auctionId: null,

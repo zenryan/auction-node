@@ -32,4 +32,12 @@ export class AuctionItem extends BaseEntity {
 
   @UpdateDateColumn({ type: "datetime", precision: 0, default: () => "CURRENT_TIMESTAMP" })
   updated_at: Date;
+
+  static deleteByAuctionAndItemId(auctionId: Number, itemId: Number) {
+    return this.createQueryBuilder('auction_items')
+      .delete()
+      .where("item_id = :itemId", { itemId })
+      .andWhere("auction_id = :auctionId", { auctionId })
+      .execute();
+  }
 }

@@ -4,6 +4,7 @@
       text-orange-400 font-semibold rounded border border-orange-500
       hover:text-white hover:border-transparent
       hover:bg-orange-500"
+    @click="$emit('click')"
   >
     <Plus class="mr-2" />
     <span>{{ text }}</span>

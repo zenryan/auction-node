@@ -1,5 +1,5 @@
 <template>
-  <Datetime type="datetime" :value="inputValue" @input="setValue"></Datetime>
+  <Datetime type="datetime" :value="inputValue" @input="setValue"> </Datetime>
 </template>
 
 <script>
@@ -12,6 +12,11 @@ export default {
   props: {
     value: {
       type: String,
+    },
+  },
+  watch: {
+    value(val) {
+      this.inputValue = val;
     },
   },
   data() {

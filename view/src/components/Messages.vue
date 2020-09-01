@@ -48,6 +48,15 @@ export default {
   props: {
     auction: {
       type: Object,
+      default() {
+        return {};
+      },
+    },
+    user: {
+      required: true,
+      default() {
+        return {};
+      },
     },
   },
   components: {
@@ -62,25 +71,19 @@ export default {
     };
   },
   watch: {
-    auction(val) {
-      this.fetchMessages(val.id);
+    auction(auction) {
+      this.fetchMessages(auction.id);
+    },
+    user(user) {
+      if (user.id) {
+        this.joinChat();
+      }
     },
   },
-  mounted() {
-    // join to auction room
-    this.$socket.emit('roomJoin', {
-      type: 'auction',
-      uuid: this.auction.uuid,
-      user: this.user,
-    });
 
-    this.sockets.subscribe('roomMsg', (message) => {
-      this.messages.push(message);
-      this.$nextTick(() => {
-        const content = this.$refs.messageContainer;
-        content.scrollTop = content.scrollHeight;
-      });
-    });
+  mounted() {
+    if (this.user) this.joinChat();
+    if (this.auction) this.fetchMessages(this.auction.id);
   },
 
   methods: {
@@ -96,6 +99,23 @@ export default {
       } catch (e) {
         console.error(e);
       }
+    },
+
+    joinChat() {
+      // join to auction room
+      this.$socket.emit('roomJoin', {
+        type: 'auction',
+        uuid: this.auction.uuid,
+        user: this.user,
+      });
+
+      this.sockets.subscribe('roomMsg', (message) => {
+        this.messages.push(message);
+        this.$nextTick(() => {
+          const content = this.$refs.messageContainer;
+          content.scrollTop = content.scrollHeight;
+        });
+      });
     },
 
     async sendMessage() {

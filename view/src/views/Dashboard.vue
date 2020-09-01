@@ -12,11 +12,16 @@
       <div class="flex flex-col flex-1 w-full">
         <TopMenu v-on:toggleSideMenu="onToggleSideMenu" />
         <main class="gradient h-full overflow-y-auto">
-          <router-view></router-view>
+          <div class="grid grid-cols-12">
+            <div class="col-span-12 lg:col-span-9">
+              <router-view></router-view>
+            </div>
+            <div class="col-span-12 lg:col-span-3 h-full">
+              <Event />
+            </div>
+          </div>
         </main>
       </div>
-
-      <Main />
     </div>
   </div>
 </template>
@@ -24,11 +29,13 @@
 <script>
 import SideBar from '../components/SideBar.vue';
 import TopMenu from '../components/TopMenu.vue';
+import Event from '../components/Event.vue';
 
 export default {
   components: {
     SideBar,
     TopMenu,
+    Event,
   },
   data() {
     return {

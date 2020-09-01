@@ -44,7 +44,11 @@
     </div>
 
     <!-- messages -->
-    <Messages v-if="auctionStatus.status === 'STARTED'" :auction="auction" />
+    <Messages
+      v-if="auctionStatus.status === 'STARTED'"
+      :auction="auction"
+      :user="user"
+    />
   </div>
 </template>
 
