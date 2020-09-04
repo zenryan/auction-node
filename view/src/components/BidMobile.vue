@@ -51,6 +51,7 @@
       v-if="auctionStatus.status === 'STARTED'"
       :auction="auction"
       :user="user"
+      :showOnlineUsers="showOnlineUsers"
     >
     </Messages>
   </div>
@@ -92,6 +93,7 @@ export default {
         msg: '',
         timer: '',
       },
+      showOnlineUsers: false,
     };
   },
 
@@ -133,7 +135,7 @@ export default {
     },
 
     toggleUser() {
-      console.log('toggleUser');
+      this.showOnlineUsers = !this.showOnlineUsers;
     },
   },
 };

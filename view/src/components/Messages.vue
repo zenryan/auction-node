@@ -1,10 +1,10 @@
 <template>
-  <div
-    class="shadow-xl overflow-y-auto bg-gray-200 relative"
-    style="max-height: 500px;"
-    ref="messageContainer"
-  >
-    <div class="text-xs">
+  <div class="shadow-xl bg-gray-200 relative">
+    <div
+      ref="messageContainer"
+      class="text-xs overflow-y-auto"
+      style="height: 50vh;"
+    >
       <div
         :class="msg.own ? 'text-right' : false"
         v-for="msg in messages"
@@ -17,23 +17,26 @@
           <UserMessage :name="msg.name" :message="msg.message" />
         </template>
       </div>
+      <!-- <pre>{{ $data.messages }}</pre> -->
     </div>
-    <div class="flex bottom-0 left-0 bg-gray-200 w-full h-12 item-center">
+    <div
+      class="flex flex-wrap bottom-0 left-0 bg-gray-200 w-full h-12 item-center"
+    >
       <input
-        class="typing-input flex-2 m-2 py-2 px-4 text-xs rounded"
+        class="flex-1 typing-input m-2 py-2 px-4 text-xs rounded"
         type="text"
         placeholder="Type message here ..."
         v-model="inputMessage"
         @keyup.enter="sendMessage"
       />
       <div
-        class="flex-1 self-strecth rounded ml-2 hover:bg-blue-100text-gray-700 py-3"
+        class="flex self-strecth rounded mx-3 hover:bg-blue-100text-gray-700 py-3"
         @click="sendMessage"
       >
         <Send />
       </div>
     </div>
-    <OnlineUsers :auction="auction" :user="user" />
+    <OnlineUsers :auction="auction" :show="showOnlineUsers" />
   </div>
 </template>
 
@@ -55,6 +58,11 @@ export default {
       required: true,
       default() {
         return {};
+      },
+    },
+    showOnlineUsers: {
+      default() {
+        return false;
       },
     },
   },
@@ -81,8 +89,24 @@ export default {
     },
   },
 
+  sockets: {
+    connect() {
+      console.log('message connectd');
+      if (this.user) this.joinChat();
+    },
+  },
+
+  created() {
+    window.addEventListener('beforeunload', async () => {
+      await this.$socket.emit('roomLeave', {
+        type: 'auction',
+        uuid: this.auction.uuid,
+        user: this.user,
+      });
+    });
+  },
+
   mounted() {
-    if (this.user) this.joinChat();
     if (this.auction) this.fetchMessages(this.auction.id);
   },
 
@@ -92,13 +116,17 @@ export default {
         const url = `/auction/${auctionId}/messages`;
         const response = await this.$http.get(url);
         this.messages = response.data.messages;
-        this.$nextTick(() => {
-          const content = this.$refs.messageContainer;
-          content.scrollTop = content.scrollHeight;
-        });
+        this.scrollToLast();
       } catch (e) {
         console.error(e);
       }
+    },
+
+    scrollToLast() {
+      this.$nextTick(() => {
+        const content = this.$refs.messageContainer;
+        content.scrollTop = content.scrollHeight;
+      });
     },
 
     joinChat() {
@@ -111,10 +139,25 @@ export default {
 
       this.sockets.subscribe('roomMsg', (message) => {
         this.messages.push(message);
-        this.$nextTick(() => {
-          const content = this.$refs.messageContainer;
-          content.scrollTop = content.scrollHeight;
+        this.scrollToLast();
+      });
+
+      this.sockets.subscribe('userLeft', (user) => {
+        this.messages.push({
+          id: new Date().getTime(),
+          message: `${user.name} has left`,
+          name: 'system',
         });
+        this.scrollToLast();
+      });
+
+      this.sockets.subscribe('userJoined', (user) => {
+        this.messages.push({
+          id: new Date().getTime(),
+          message: `${user.name} has joined`,
+          name: 'system',
+        });
+        this.scrollToLast();
       });
     },
 
@@ -135,8 +178,9 @@ export default {
       }
     },
   },
-  beforeDestroy() {
-    this.$socket.emit('roomLeave', {
+
+  async beforeDestroy() {
+    await this.$socket.emit('roomLeave', {
       type: 'auction',
       uuid: this.auction.uuid,
       user: this.user,
@@ -144,21 +188,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.typing-input {
-  width: 310px;
-}
-
-@media (min-width: 768px) {
-  .typing-input {
-    width: 698px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .typing-input {
-    width: 1210px;
-  }
-}
-</style>

@@ -1,18 +1,19 @@
 import { AuctionMessage } from './entity/auction_message';
 import { User } from './entity/users';
 import { Auction } from './entity/auctions';
-
+import { AuctionUser } from './entity/auction_user';
 
 /**
  * socket.io
  */
 module.exports = function (server: any) {
   const io = require('socket.io')(server);
+
   io.on('connection', (socket: any) => {
     socket = socket;
     console.log('[ws] User connected');
 
-    socket.on('disconnect', () => {
+    socket.on('disconnect', async () => {
       console.log('[ws] User disconnect');
     });
 
@@ -23,7 +24,7 @@ module.exports = function (server: any) {
     });
 
     socket.on('roomJoin', (body: any) => {
-      console.log('roomJoin', body);
+      console.log('roomJoin', `${body.uuid}:${body.user.name}`);
       const { uuid } = body;
 
       socket.join(`auction_${uuid}`, async () => {
@@ -32,19 +33,15 @@ module.exports = function (server: any) {
         // TODO: change this to get from jwt
         const user = await User.findOneOrFail({ id: body.user.id });
         const auction = await Auction.findOneOrFail({ uuid: body.uuid });
-        message.auction_id = auction.id;
-        message.message = `${user.name} has joined`;
-        message.name = 'system';
-        await message.save();
 
-        socket.broadcast
-          .to(`auction_${uuid}`)
-          .emit('roomMsg', message);
+        // add user to room
+        await AuctionUser.addUser(auction.id, user.id, user.name, socket.id);
+        socket.broadcast.to(`auction_${body.uuid}`).emit('userJoined', user);
       });
     });
 
     socket.on('roomLeave', (body: any) => {
-      console.log('roomLeave', body);
+      console.log('roomLeave', `${body.uuid}:${body.user.name}`);
       const { type, uuid, user } = body;
 
       socket.leave(`auction_${uuid}`, async () => {
@@ -53,14 +50,10 @@ module.exports = function (server: any) {
         // TODO: change this to get from jwt
         const user = await User.findOneOrFail({ id: body.user.id });
         const auction = await Auction.findOneOrFail({ uuid: body.uuid });
-        message.auction_id = auction.id;
-        message.message = `${user.name} has left`;
-        message.name = 'system';
-        await message.save();
 
-        socket.broadcast
-          .to(`auction_${uuid}`)
-          .emit('roomMsg', message);
+        // remove user to room and emit to FE
+        await AuctionUser.removeUser(auction.id, user.id);
+        socket.broadcast.to(`auction_${body.uuid}`).emit('userLeft', user);
       });
     });
 
@@ -77,7 +70,6 @@ module.exports = function (server: any) {
         message.name = user.name;
         await message.save();
 
-        console.log('[emit] roomMsg', `auction_${body.uuid}`, message);
         io.to(`auction_${body.uuid}`).emit('roomMsg', message);
       } catch (e) {
         console.error(e)

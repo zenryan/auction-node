@@ -8,6 +8,7 @@ import { Item } from '../entity/items';
 import { User } from '../entity/users';
 import { AuctionItem } from '../entity/auction_items';
 import { AuctionMessage } from '../entity/auction_message';
+import { AuctionUser } from '../entity/auction_user';
 import { Status } from '../entity/enum';
 import { createQueryBuilder } from 'typeorm';
 
@@ -270,8 +271,42 @@ router.delete('/:auctionId/item/:itemId', async function (
     res.status(500).json({
       message: "ERROR",
       error: {
-        code: "AUCTION_ITEM_CREATE_ERROR",
-        error_message: `Adding auctionItem error`
+        code: "AUCTION_ITEM_DELETE_ERROR",
+        error_message: `Delete auctionItem error`
+      }
+    });
+  }
+});
+
+router.get('/:auctionId/users', async function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  try {
+    const { auctionId } = req.params;
+
+    const auctionUsers = await AuctionUser.find({ auction_id: parseInt(auctionId, 10) });
+    assert(auctionUsers !== undefined, 'Error: Item not found');
+    const users = auctionUsers.map((auctionUser) => {
+      return {
+        id: auctionUser.user_id,
+        name: auctionUser.name,
+      };
+    })
+    const data = {
+      message: "GET",
+      auction_users: users,
+    };
+    res.status(200).json(data);
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      message: "ERROR",
+      error: {
+        code: "AUCTION_USER_GET_ERROR",
+        error_message: `Getting auctionUser error`
       }
     });
   }
