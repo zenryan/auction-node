@@ -16,7 +16,7 @@
         <component :is="itemSvg" />
       </SideBarListItem>
 
-      <SideBarListItem link-name="Bid auction" link-to="/app/bid/3">
+      <SideBarListItem link-name="Bid auction" link-to="/app/bid/2">
         <component :is="mouseClickSvg" />
       </SideBarListItem>
 

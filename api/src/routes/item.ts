@@ -110,7 +110,7 @@ router.post('/create', async function (
     const item = new Item();
     if (reqItem.id) item.id = reqItem.id;
     item.title = reqItem.title;
-    item.desc = reqItem.title;
+    item.desc = reqItem.desc;
     item.detail = reqItem.detail;
     item.price = reqItem.price;
     item.status = Status.active;
@@ -137,4 +137,3 @@ router.post('/create', async function (
 });
 
 module.exports = router;
-

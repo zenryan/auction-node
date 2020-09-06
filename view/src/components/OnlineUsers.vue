@@ -1,7 +1,9 @@
 <template>
-  <div v-if="show" class="absolute z-1 top-0 right-0 w-2/6">
+  <div v-if="show">
     <div
-      class="bg-white text-sm text-gray-500 font-bold px-5 py-2 shadow border-b border-gray-300"
+      class="bg-white text-sm text-gray-500 font-bold
+      px-5 py-2 shadow border-b border-gray-300 text-center
+      bg-gray-100"
     >
       Online Users
     </div>
@@ -81,5 +83,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

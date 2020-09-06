@@ -11,6 +11,7 @@ import { AuctionMessage } from '../entity/auction_message';
 import { AuctionUser } from '../entity/auction_user';
 import { Status } from '../entity/enum';
 import { createQueryBuilder } from 'typeorm';
+import Message from '../enums/Message';
 
 router.get('/', async function (
   req: express.Request,
@@ -99,6 +100,7 @@ router.post('/:auctionId/message', async function (
     const user = await User.findOneOrFail(body.user_id);
     message.auction_id = parseInt(auctionId, 10);
     message.message = body.message;
+    message.type = Message.USER;
     message.user_id = body.user_id;
     message.name = user.name;
     message.save();
@@ -178,11 +180,14 @@ router.get('/:auctionId/item', async function (
       items: result.map((i) => {
         return {
           id: i.Item_id,
+          auction_item_id: i.AuctionItem_id,
           title: i.Item_title,
           desc: i.Item_desc,
           detail: i.Item_detail,
           price: i.Item_price,
+          bid_price: i.AuctionItem_bid_price,
           status: i.Item_status,
+          avatar: i.Item_avatar,
           created_at: i.Item_created_at,
           updated_at: i.Item_updated_at,
         }

@@ -32,6 +32,6 @@ yarn lint
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### Deploy - firebase
+### Deploy - firebase (requires build first)
 
 firebase deploy --only hosting

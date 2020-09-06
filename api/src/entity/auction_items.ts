@@ -27,6 +27,9 @@ export class AuctionItem extends BaseEntity {
   @Column('bigint')
   startingprice: number;
 
+  @Column({ type: 'bigint', nullable: true, default: 0 })
+  bid_price: number;
+
   @CreateDateColumn({ type: "datetime", precision: 0, default: () => "CURRENT_TIMESTAMP" })
   created_at: Date;
 

@@ -2,13 +2,16 @@
   <div class="container mx-auto">
     <AuctionCarousel
       :auction="auction"
+      :items="auction_items"
       @auctionStatusChanged="setAuctionStatus"
+      @itemChanged="handleItemChanged"
     />
 
     <!-- page body -->
-    <div class="flex items-strecth p-2 bg-blue-300">
+    <div class="flex items-stretch p-2 bg-blue-300">
       <div class="flex-1 text-left">
         <p>{{ auction.title }}</p>
+        <p class="text-xs ">{{ auction.desc }}</p>
       </div>
       <div class="flex-1 text-right">
         <button class="px-2" @click="toggleUser(true)">
@@ -52,6 +55,9 @@
       :auction="auction"
       :user="user"
       :showOnlineUsers="showOnlineUsers"
+      :auction_item="auction_items[itemChoosen]"
+      @setBidPrice="handleSetBidPrice"
+      @hideOnlineUser="hideOnlineUser"
     >
     </Messages>
   </div>
@@ -88,11 +94,13 @@ export default {
         startdate: '',
         enddate: '',
       },
+      auction_items: [],
       auctionStatus: {
         status: '',
         msg: '',
         timer: '',
       },
+      itemChoosen: 0,
       showOnlineUsers: false,
     };
   },
@@ -108,6 +116,7 @@ export default {
     if (this.auctionId) {
       await this.fetchAuction(this.auctionId);
       if (this.$refs.editor) this.$refs.editor.setContent(this.auction.detail);
+      await this.fetchAuctionItems(this.auction.id);
     }
     // TODO: hard coded, refactor when login is implemented
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -134,8 +143,27 @@ export default {
       }
     },
 
+    async fetchAuctionItems(auctionId) {
+      const url = `/auction/${auctionId}/item`;
+      const res = await this.$http.get(url);
+      this.auction_items = res.data.items;
+    },
+
     toggleUser() {
       this.showOnlineUsers = !this.showOnlineUsers;
+    },
+
+    hideOnlineUser() {
+      this.showOnlineUsers = false;
+    },
+
+    handleItemChanged(idx) {
+      this.itemChoosen = idx;
+    },
+
+    handleSetBidPrice(price) {
+      console.log(this.auction_items[this.itemChoosen]);
+      this.auction_items[this.itemChoosen].bid_price = price;
     },
   },
 };

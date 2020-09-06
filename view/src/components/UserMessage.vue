@@ -1,11 +1,11 @@
 <template>
   <div class="p-2">
     <p>
-      <label class="bg-gray-100 rounded-full py-1 px-2 text-bold text-xs">
+      <label class="bg-gray-300 rounded-full p-2 text-bold text-xs">
         {{ name }}
       </label>
     </p>
-    <p class="p-2">{{ message }}</p>
+    <p class="p-2 text-sm">{{ message }}</p>
   </div>
 </template>
 

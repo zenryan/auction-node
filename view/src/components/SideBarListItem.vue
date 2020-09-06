@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  props: ['linkTo', 'linkName', 'svg'],
+  props: ['linkTo', 'linkName'],
   data() {
     return {
       isCurrent: false,

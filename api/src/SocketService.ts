@@ -2,6 +2,7 @@ import { AuctionMessage } from './entity/auction_message';
 import { User } from './entity/users';
 import { Auction } from './entity/auctions';
 import { AuctionUser } from './entity/auction_user';
+import Message from './enums/Message';
 
 /**
  * socket.io
@@ -10,7 +11,6 @@ module.exports = function (server: any) {
   const io = require('socket.io')(server);
 
   io.on('connection', (socket: any) => {
-    socket = socket;
     console.log('[ws] User connected');
 
     socket.on('disconnect', async () => {
@@ -64,7 +64,8 @@ module.exports = function (server: any) {
         // TODO: change this to get from jwt
         const user = await User.findOneOrFail({ id: body.user.id });
         const auction = await Auction.findOneOrFail({ uuid: body.uuid });
-        message.auction_id = auction.id;
+        message.auction_id = auction.id
+        message.type = Message.USER;
         message.message = body.message;
         message.user_id = user.id;
         message.name = user.name;
@@ -75,5 +76,11 @@ module.exports = function (server: any) {
         console.error(e)
       }
     });
+
+    socket.on('error', (err: unknown) => {
+      console.error('[ws] ERROR: ', err);
+    });
   });
+
+  return io;
 };

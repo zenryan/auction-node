@@ -1,6 +1,6 @@
 <template>
-  <div class="p-2">
-    <p class="p-2 text-gray-600 italic text-xs">{{ message }}</p>
+  <div>
+    <p class="py-2 px-4 text-gray-500 italic text-sm">{{ message }}</p>
   </div>
 </template>
 
