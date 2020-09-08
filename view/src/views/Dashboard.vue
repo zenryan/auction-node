@@ -11,12 +11,12 @@
 
       <div class="flex flex-col flex-1 w-full">
         <TopMenu v-on:toggleSideMenu="onToggleSideMenu" />
-        <main class="gradient h-full overflow-y-auto">
+        <main class="h-full overflow-y-auto">
           <div class="grid grid-cols-12">
-            <div class="col-span-12 lg:col-span-9">
+            <div class="col-span-12 lg:col-span-8">
               <router-view></router-view>
             </div>
-            <div class="col-span-12 lg:col-span-3 h-full p-2 md:p-4">
+            <div class="col-span-12 lg:col-span-4 h-full p-4 lg:p-4 shadow-lg">
               <Event />
             </div>
           </div>
