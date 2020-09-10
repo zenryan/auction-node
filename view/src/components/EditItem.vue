@@ -56,7 +56,7 @@
                 @click="removeImage"
                 class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-1 hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
               >
-                <img class="w-5 h-5" src="minusImage" />
+                <img class="w-5 h-5" :src="minusImage" />
               </button>
             </template>
           </div>
@@ -166,7 +166,7 @@ export default {
         this.form.avatar || `${process.env.API_HOST}/images/item-default.png`
       );
     },
-    minuImage() {
+    minusImage() {
       return `${process.env.VUE_APP_API_HOST}/images/minus.png`;
     },
   },
