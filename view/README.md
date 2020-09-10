@@ -34,4 +34,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Deploy - firebase (requires build first)
 
+```
+change endpoint in .env.production if end point has changed
 firebase deploy --only hosting
+```

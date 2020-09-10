@@ -18,4 +18,5 @@ https://ckeditor.com/
 
 ### Special thanks to
 
+For free SVG icons
 https://remixicon.com/

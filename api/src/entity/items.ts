@@ -1,4 +1,5 @@
-import { Entity,
+import {
+    Entity,
     Column,
     BaseEntity,
     PrimaryGeneratedColumn,
@@ -6,8 +7,11 @@ import { Entity,
     CreateDateColumn,
     UpdateDateColumn,
     Brackets,
+    OneToOne,
+    JoinColumn
 } from "typeorm";
 import { Status } from './enum';
+import { AuctionItem } from "./auction_items";
 
 @Entity()
 export class Item extends BaseEntity {
@@ -39,14 +43,18 @@ export class Item extends BaseEntity {
     @UpdateDateColumn({ type: "datetime", precision: 0, default: () => "CURRENT_TIMESTAMP" })
     updated_at: Date;
 
+    @OneToOne(type => AuctionItem)
+    @JoinColumn({ name: 'id' })
+    auctionItem: AuctionItem;
+
     static searchbyText(searchText: any) {
         const text = `%${searchText}%`;
         return this.createQueryBuilder("item")
             .where("item.status = :status", { status: Status.active })
-            .andWhere( new Brackets(qb => {
+            .andWhere(new Brackets(qb => {
                 qb.where("item.title like :text", { text })
-                .orWhere("item.desc like :text", { text })
-                .orWhere("item.detail like :text", { text })
+                    .orWhere("item.desc like :text", { text })
+                    .orWhere("item.detail like :text", { text })
             }))
             .getMany();
     }

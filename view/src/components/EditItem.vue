@@ -48,18 +48,15 @@
             class="shadow flex rounded items-end h-56 justify-end bg-cover"
             :style="{ backgroundImage: `url(${itemImage})` }"
           >
-            <template v-if="!form.avatar">
+            <template v-if="!form.avatar && form.id">
               <UploadInput v-if="!form.avatar" @file-chosen="uploadFile" />
             </template>
-            <template v-else>
+            <template v-if="form.avatar">
               <button
                 @click="removeImage"
                 class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-1 hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
               >
-                <img
-                  class="w-5 h-5"
-                  src="http://localhost:3000/images/minus.png"
-                />
+                <img class="w-5 h-5" src="minusImage" />
               </button>
             </template>
           </div>
@@ -169,6 +166,9 @@ export default {
         this.form.avatar || `${process.env.API_HOST}/images/item-default.png`
       );
     },
+    minuImage() {
+      return `${process.env.VUE_APP_API_HOST}/images/minus.png`;
+    },
   },
 
   directives: {
@@ -264,7 +264,7 @@ export default {
 
       try {
         form.append('picture', file);
-        form.append('item_id', this.$route.params.itemId);
+        form.append('item_id', this.form.id);
 
         const result = await this.$http.post(url, form, config);
 

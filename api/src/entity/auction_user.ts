@@ -41,7 +41,6 @@ export class AuctionUser extends BaseEntity {
   }
 
   static removeUser(auctionId: number, userId: number) {
-    console.log('removeUser');
     return this.createQueryBuilder()
       .delete()
       .from('auction_user')

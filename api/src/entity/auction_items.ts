@@ -5,9 +5,14 @@ import {
   PrimaryGeneratedColumn,
   Index,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  ManyToOne,
+  OneToOne,
+  JoinColumn
 } from "typeorm";
 import { Status } from './enum';
+import { Auction } from './auctions';
+import { Item } from './items';
 
 @Entity()
 export class AuctionItem extends BaseEntity {
@@ -36,8 +41,16 @@ export class AuctionItem extends BaseEntity {
   @UpdateDateColumn({ type: "datetime", precision: 0, default: () => "CURRENT_TIMESTAMP" })
   updated_at: Date;
 
+  @ManyToOne(type => Auction, auction => auction.auctionItems)
+  @JoinColumn({ name: "auction_id" })
+  auction: Auction;
+
+  @OneToOne(type => Item)
+  @JoinColumn({ name: 'item_id' })
+  item: Item;
+
   static deleteByAuctionAndItemId(auctionId: Number, itemId: Number) {
-    return this.createQueryBuilder('auction_items')
+    return this.createQueryBuilder()
       .delete()
       .where("item_id = :itemId", { itemId })
       .andWhere("auction_id = :auctionId", { auctionId })

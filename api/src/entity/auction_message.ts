@@ -36,7 +36,7 @@ export class AuctionMessage extends BaseEntity {
   updated_at: Date;
 
   static getMessages(auctionId: Number) {
-    return this.createQueryBuilder('auction_message')
+    return this.createQueryBuilder()
       .where("auction_id = :auctionId", { auctionId })
       .andWhere("user_id IS NOT NULL")
       .getMany();

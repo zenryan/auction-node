@@ -1,29 +1,30 @@
 //@ts-check
-const dotenv = require("dotenv");
-const path = require("path");
+const dotenv = require('dotenv');
+const path = require('path');
 
-let envFile = "development.env";
-const env = process.env.NODE_ENV || "development";
+let envFile = 'development.env';
+const env = process.env.NODE_ENV || 'development';
 
 if (process.env.NODE_ENV !== undefined) {
-  envFile = env + ".env";
+  envFile = env + '.env';
 }
 
 dotenv.config({
-  path: "environment/" + envFile,
+  path: 'environment/' + envFile,
 });
 
-const srcConfig = env === 'production'
-  // production
-  ? {
-    folder: 'dist',
-    extension: '.js',
-  }
-  // development
-  : {
-    folder: 'src',
-    extension: '.ts',
-  }
+const srcConfig =
+  env === 'production'
+    ? // production
+      {
+        folder: 'dist',
+        extension: '.js',
+      }
+    : // development
+      {
+        folder: 'src',
+        extension: '.ts',
+      };
 
 /**
  * Set time zone to UTC for native Date.
@@ -31,32 +32,37 @@ const srcConfig = env === 'production'
  */
 // if (process.env.NODE_ENV === "development") process.env.TZ = "UTC";
 
-const root = path.normalize(__dirname + "/..");
-const rootPath = process.env.ROOT_PATH || "/";
+const root = path.normalize(__dirname + '/..');
+const rootPath = process.env.ROOT_PATH || '/';
 
 const config = {
   env,
   debug: process.env.DEBUG === 'true' ? true : false,
-  rootPath: process.env.ROOT_PATH || "/",
+  rootPath: process.env.ROOT_PATH || '/',
   // tz: process.env.TZ,
   app: {
-    name: "auction",
+    name: 'auction',
+    host: process.env.NGROK_HOST || process.env.API_HOST,
   },
   // port: Number(process.env.PORT) || 9000,
   database: {
-    type: "mysql",
-    host: process.env.DB_HOST || "localhost",
+    type: 'mysql',
+    host: process.env.DB_HOST || 'localhost',
     port: process.env.DB_PORT || 33061,
-    username: process.env.DB_USERNAME || "root",
-    password: process.env.DB_PASSWORD || "root",
-    database: process.env.DB_NAME || "koi",
+    username: process.env.DB_USERNAME || 'root',
+    password: process.env.DB_PASSWORD || 'root',
+    database: process.env.DB_NAME || 'koi',
     entities: [`${root}/${srcConfig.folder}/entity/*${srcConfig.extension}`],
-    migrations: [`${root}/${srcConfig.folder}/migrations/*${srcConfig.extension}`],
-    subscribers: [`${root}/${srcConfig.folder}/subscribers/*${srcConfig.extension}`],
+    migrations: [
+      `${root}/${srcConfig.folder}/migrations/*${srcConfig.extension}`,
+    ],
+    subscribers: [
+      `${root}/${srcConfig.folder}/subscribers/*${srcConfig.extension}`,
+    ],
     synchronize: false,
-    logging: process.env.DB_LOG == "true" ? true : false,
-    charset: "utf8mb4_unicode_ci",
-  }
-}
+    logging: process.env.DB_LOG == 'true' ? true : false,
+    charset: 'utf8mb4_unicode_ci',
+  },
+};
 
 module.exports = config;

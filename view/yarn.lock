@@ -931,6 +931,11 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
+"@morioh/v-lightbox@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@morioh/v-lightbox/-/v-lightbox-1.0.3.tgz#9afa41ec059fd2196d2814d553d7c487c8984ca2"
+  integrity sha512-S+BJ4FuMSHPyW6clP+gat03GHB8CHjC3fWP11zqwrsnqOpnXKsJ+yNlVXW8tPrWmUzj8weBeY4Bv94dpYlUPPw==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"

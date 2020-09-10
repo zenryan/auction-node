@@ -3,6 +3,8 @@ import fs from 'fs';
 import assert from 'assert';
 import { ItemImage } from '../entity/item_image';
 import { Item } from '../entity/items';
+// @ts-ignore
+import config = require('../../src/config');
 
 const router = express.Router();
 const multer = require('multer');
@@ -28,7 +30,7 @@ router.post('/upload', upload.single('picture'), async function (
     image.item_id = body.item_id;
     image.uuid = file.filename;
     // TODO: still hardcoded
-    image.url = `http://localhost:3000/images/item/${file.filename}`;
+    image.url = `${config.app.host}/images/item/${file.filename}`;
     await image.save();
 
     const data = {

@@ -146,6 +146,7 @@ export default {
   methods: {
     async fetchMessages(auctionId) {
       try {
+        if (!auctionId) return;
         const url = `/auction/${auctionId}/messages`;
         const response = await this.$http.get(url);
         this.messages = response.data.messages;

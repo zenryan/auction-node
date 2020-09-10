@@ -119,7 +119,7 @@ export default {
       const item = this.items[this.choosen];
       return item && item.avatar
         ? `background-image: url("${item.avatar}");`
-        : 'background-image: url("https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80");';
+        : `background-image: url("${process.env.VUE_APP_API_HOST}/images/image-add-fill.jpg");`;
     },
 
     item() {

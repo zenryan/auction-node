@@ -5,6 +5,9 @@ import { Item } from '../entity/items';
 import { Status } from '../entity/enum';
 const multer = require('multer');
 const upload = multer({ dest: 'src/public/images/item' });
+// @ts-ignore
+import config = require('../../src/config');
+
 
 router.get('/', async function (
   req: express.Request,
@@ -78,7 +81,7 @@ router.post('/avatar', upload.single('picture'), async function (
     const item = await Item.findOne({ id: parseInt(body.item_id, 10) });
     assert(item !== undefined, 'Item not found');
 
-    item.avatar = `http://localhost:3000/images/item/${file.filename}`;
+    item.avatar = `${config.app.host}/images/item/${file.filename}`;
     await item.save();
 
     const data = {

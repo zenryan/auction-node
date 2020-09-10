@@ -115,6 +115,7 @@
         </div>
       </div>
     </div>
+
     <!-- ongoing auction -->
     <CardSlider
       :items="ongoingAuctions"
@@ -147,59 +148,33 @@ export default {
     return {
       upcomingAuctions: [],
       expiredAuctions: [],
-      ongoingAuctions: [
-        {
-          imageUrl:
-            'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-          length: 42,
-          weight: 600,
-          rating: 4,
-          price: 190000,
-          reviewCounts: 199,
-        },
-        {
-          imageUrl:
-            'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-          length: 42,
-          weight: 600,
-          rating: 4,
-          price: 190000,
-          reviewCounts: 199,
-        },
-        {
-          imageUrl:
-            'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-          length: 42,
-          weight: 600,
-          rating: 4,
-          price: 190000,
-          reviewCounts: 199,
-        },
-        {
-          imageUrl:
-            'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-          length: 42,
-          weight: 600,
-          rating: 4,
-          price: 190000,
-          reviewCounts: 199,
-        },
-        {
-          imageUrl:
-            'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-          length: 42,
-          weight: 600,
-          rating: 4,
-          price: 190000,
-          reviewCounts: 199,
-        },
-      ],
+      ongoingAuctions: [],
     };
   },
 
-  mounted() {
-    this.upcomingAuctions = this.ongoingAuctions;
-    this.expiredAuctions = this.ongoingAuctions;
+  async mounted() {
+    const [ongoing, upcoming, expired] = await Promise.all([
+      this.fetchAuction('ongoing-auction'),
+      this.fetchAuction('upcoming-auction'),
+      this.fetchAuction('previous-auction'),
+    ]);
+
+    this.ongoingAuctions = ongoing;
+    this.upcomingAuctions = upcoming;
+    this.expiredAuctions = expired;
+  },
+
+  methods: {
+    async fetchAuction(group) {
+      try {
+        const url = `/auction/search/${group}`;
+        const res = await this.$http.get(url);
+        return res.data.auctions;
+      } catch (err) {
+        console.error(err);
+        return [];
+      }
+    },
   },
 };
 </script>

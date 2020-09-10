@@ -317,4 +317,56 @@ router.get('/:auctionId/users', async function (
   }
 });
 
+router.get('/search/:group', async function (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  let auctions: any;
+  try {
+    const { group } = req.params;
+
+    switch (group) {
+      case 'ongoing-auction':
+        auctions = await Auction.searchOngoing();
+        break;
+      case 'upcoming-auction':
+        auctions = await Auction.searchUpcoming();
+        break;
+      case 'previous-auction':
+        auctions = await Auction.searchPrevious();
+        break;
+
+      default:
+        break;
+    }
+    console.log(auctions);
+    // auctions = await Auction.withItem(auctions);
+    // const ids = auctions.map((a: Auction) => a.id);
+    // console.log(ids);
+    // const items = await createQueryBuilder(AuctionItem)
+    //   .leftJoinAndSelect(Item, "item", "item.id = AuctionItem.item_id")
+    //   .where("AuctionItem.auction_id IN (:...ids)", { ids })
+    //   .getMany();
+
+    // console.log(items);
+
+    const data = {
+      message: "GET",
+      auctions,
+    };
+    res.status(200).json(data);
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      message: "ERROR",
+      error: {
+        code: "AUCTION_USER_GET_ERROR",
+        error_message: `Getting auctionUser error`
+      }
+    });
+  }
+});
+
 module.exports = router;

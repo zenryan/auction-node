@@ -51,7 +51,7 @@
 
     <!-- messages -->
     <Messages
-      v-if="auctionStatus.status === 'STARTED'"
+      v-if="auctionStatus.status === 'STARTED' && auction_items.length"
       :auction="auction"
       :user="user"
       :showOnlineUsers="showOnlineUsers"
@@ -119,7 +119,7 @@ export default {
       await this.fetchAuctionItems(this.auction.id);
     }
     // TODO: hard coded, refactor when login is implemented
-    this.user = JSON.parse(localStorage.getItem('user'));
+    this.user = await JSON.parse(localStorage.getItem('user'));
   },
 
   methods: {
@@ -162,7 +162,6 @@ export default {
     },
 
     handleSetBidPrice(price) {
-      console.log(this.auction_items[this.itemChoosen]);
       this.auction_items[this.itemChoosen].bid_price = price;
     },
   },
