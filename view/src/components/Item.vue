@@ -163,7 +163,7 @@
                       <div class="shadow-md flex-shrink-0 w-10 h-10">
                         <img
                           class="w-full h-full"
-                          :src="item.avatar"
+                          :src="itemAvatar(item.avatar)"
                           :alt="item.desc"
                         />
                       </div>
@@ -281,6 +281,10 @@ export default {
 
     showItemLink(auctionId) {
       return `/app/item/edit/${auctionId}`;
+    },
+
+    itemAvatar(avatar) {
+      return `${process.env.VUE_APP_API_HOST}/${avatar}`;
     },
 
     selectAllCheckbox($event) {

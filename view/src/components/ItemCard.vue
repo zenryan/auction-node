@@ -61,7 +61,7 @@ export default {
       // const img = 'https://i.wifegeek.com/200426/5ce1e1c7.jpg';
       const img = `${process.env.VUE_APP_API_HOST}/images/image-add-fill.jpg`;
       const images = this.item.auctionItems.map((i) => {
-        return i.item.avatar;
+        return `${process.env.VUE_APP_API_HOST}/${i.item.avatar}`;
       });
 
       if (images.length === 0) return [img];

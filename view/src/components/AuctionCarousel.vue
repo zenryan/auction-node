@@ -118,7 +118,7 @@ export default {
     avatar() {
       const item = this.items[this.choosen];
       return item && item.avatar
-        ? `background-image: url("${item.avatar}");`
+        ? `background-image: url("${process.env.VUE_APP_API_HOST}/${item.avatar}");`
         : `background-image: url("${process.env.VUE_APP_API_HOST}/images/image-add-fill.jpg");`;
     },
 

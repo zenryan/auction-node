@@ -163,7 +163,8 @@ export default {
   computed: {
     itemImage() {
       return (
-        this.form.avatar || `${process.env.API_HOST}/images/item-default.png`
+        `${process.env.VUE_APP_API_HOST}/${this.form.avatar}` ||
+        `${process.env.VUE_APP_API_HOST}/images/item-default.png`
       );
     },
     minusImage() {
@@ -236,7 +237,6 @@ export default {
     },
 
     removeImage() {
-      console.log('update image');
       this.form.avatar = null;
       this.onClickSave();
     },
