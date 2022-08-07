@@ -81,7 +81,8 @@ router.post('/avatar', upload.single('picture'), async function (
     const item = await Item.findOne({ id: parseInt(body.item_id, 10) });
     assert(item !== undefined, 'Item not found');
 
-    item.avatar = `${config.app.host}/images/item/${file.filename}`;
+    // item.avatar = `${config.app.host}/images/item/${file.filename}`;
+    item.avatar = `images/item/${file.filename}`;
     await item.save();
 
     const data = {
@@ -117,7 +118,6 @@ router.post('/create', async function (
     item.detail = reqItem.detail;
     item.price = reqItem.price;
     item.status = Status.active;
-    item.avatar = reqItem.avatar;
     await item.save();
 
     const data = {
